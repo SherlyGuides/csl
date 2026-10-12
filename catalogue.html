@@ -30,6 +30,13 @@ a { color: inherit; }
 .bar img { display: block; height: 36px; width: auto; }
 .back { font-size: 0.94rem; color: var(--muted); text-decoration: none; white-space: nowrap; }
 .back:hover { color: var(--text); }
+.actions { display: flex; align-items: center; gap: 16px; }
+.pdf { padding: 6px 14px; border: 1px solid var(--orange); border-radius: var(--r); color: var(--orange); font-size: 0.89rem; font-weight: 600; text-decoration: none; }
+.pdf:hover { background: var(--orange); color: #14100c; }
+.download { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; margin-top: 28px; padding: 0 20px; border-radius: var(--r); background: var(--orange); color: #14100c; font-weight: 650; text-decoration: none; }
+.download:hover { background: var(--orange-lit); }
+.download span { font-weight: 400; font-size: 0.86rem; opacity: 0.75; }
+@media (max-width: 420px) { .back { font-size: 0; } .back::before { content: '← Proposal'; font-size: 0.89rem; } }
 .jump { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0 12px; scrollbar-width: none; }
 .jump::-webkit-scrollbar { display: none; }
 .jump a { flex: none; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.89rem; text-decoration: none; color: var(--muted); }
@@ -71,7 +78,7 @@ dialog button { min-height: 40px; padding: 0 16px; border: 1px solid var(--line)
 <div class="bar">
   <div class="wrap">
     <a href="./"><img src="catalogue/logo.png" alt="ThinkPro Academy" width="195" height="46"></a>
-    <a class="back" href="./#equipment">&larr; Back to the proposal</a>
+    <span class="actions"><a class="back" href="./#equipment">&larr; Back to the proposal</a><a class="pdf" href="downloads/CSL-Equipment-Catalogue.pdf" download>PDF</a></span>
   </div>
   <nav class="wrap jump" aria-label="Vocations"><a href="#agriculture-gardening">Agriculture &amp; Gardening</a><a href="#food-production">Food Production</a><a href="#electronics-mechatronics">Electronics/Mechatronics</a><a href="#it-ites">IT/ITeS</a><a href="#healthcare">Healthcare</a><a href="#bfsi">BFSI</a></nav>
 </div>
@@ -80,6 +87,7 @@ dialog button { min-height: 40px; padding: 0 16px; border: 1px solid var(--line)
     <p class="eyebrow">Composite Skill Lab</p>
     <h1>Equipment Catalogue</h1>
     <p class="lede">Every item across six vocations, with its specification, the quantity for a batch of 40, and how it is used in the curriculum. Photos are illustrative; supplied makes and models may differ.</p>
+    <a class="download" href="downloads/CSL-Equipment-Catalogue.pdf" download>Download PDF<span>A4, 81 items</span></a>
   </section>
   
     <section class="vocation" id="agriculture-gardening">
