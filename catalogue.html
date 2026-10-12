@@ -1,0 +1,1216 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0E1419">
+<title>Equipment Catalogue | ThinkPro Academy</title>
+<meta name="description" content="ThinkPro Academy Composite Skill Lab: every item across six vocations, with photos, specifications, quantities per batch of 40 and curriculum use.">
+<link rel="icon" href="./favicon.png">
+<link rel="canonical" href="https://sherlyguides.github.io/csl/catalogue.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThinkPro Academy">
+<meta property="og:title" content="Equipment Catalogue | ThinkPro Academy">
+<meta property="og:url" content="https://sherlyguides.github.io/csl/catalogue.html">
+<meta property="og:image" content="https://sherlyguides.github.io/csl/catalogue/agriculture-air-thermometer-hygrometer.webp">
+<style>
+:root {
+  --bg: #0E1419; --ink: #1B242D; --text: #F4EFE7; --muted: #A9B7C2; --orange: #EF7D37; --orange-lit: #F79B5E;
+  --line: rgba(244, 239, 231, 0.16); --tile: rgba(244, 239, 231, 0.045); --photo: #EDEDED;
+  --r: 6px; --gutter: clamp(16px, 4vw, 56px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 132px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.55 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--gutter); }
+.bar { position: sticky; top: 0; z-index: 5; background: rgba(14, 20, 25, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.bar img { display: block; height: 36px; width: auto; }
+.back { font-size: 0.94rem; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.back:hover { color: var(--text); }
+.jump { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0 12px; scrollbar-width: none; }
+.jump::-webkit-scrollbar { display: none; }
+.jump a { flex: none; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.89rem; text-decoration: none; color: var(--muted); }
+.jump a:hover { color: var(--text); border-color: var(--text); }
+.hero { padding: clamp(48px, 9vw, 112px) 0 clamp(24px, 4vw, 48px); }
+.eyebrow, .code { margin: 0 0 12px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); }
+h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -0.02em; font-weight: 700; }
+.lede { max-width: 62ch; margin: 20px 0 0; color: var(--muted); font-size: 1.08rem; }
+.vocation { padding: clamp(40px, 6vw, 80px) 0 0; }
+.vocation header { max-width: 72ch; margin-bottom: 28px; }
+h2 { margin: 0; font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.1; letter-spacing: -0.01em; }
+.intro { margin: 12px 0 0; color: var(--muted); }
+.count { margin: 8px 0 0; font-size: 0.89rem; color: var(--muted); }
+.grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(46%, 260px), 1fr)); }
+.card { display: flex; flex-direction: column; background: var(--tile); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.photo { display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; background: var(--photo); cursor: zoom-in; }
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1); }
+.photo:hover img { transform: scale(1.04); }
+.photo:focus-visible { outline: 2px solid var(--orange); outline-offset: -2px; }
+.photo[disabled] { cursor: default; display: grid; place-items: center; color: #6b7680; }
+.body { padding: 16px 18px 20px; }
+h3 { margin: 0 0 10px; font-size: 1.08rem; line-height: 1.3; }
+dl { margin: 0 0 10px; display: grid; grid-template-columns: 1fr auto; gap: 12px; font-size: 0.89rem; }
+dt { color: var(--muted); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; }
+dd { margin: 2px 0 0; }
+dl div:last-child { text-align: right; }
+dl div:last-child dd { color: var(--orange-lit); font-weight: 700; font-size: 1.05rem; }
+.body p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+@media (max-width: 560px) { .grid { gap: 10px; } .body { padding: 12px 12px 14px; } h3 { font-size: 0.98rem; } dl { grid-template-columns: 1fr; gap: 6px; } dl div:last-child { text-align: left; } .body p { font-size: 0.86rem; } }
+.foot { margin-top: clamp(64px, 8vw, 112px); padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.89rem; }
+dialog { padding: 0; border: 0; border-radius: var(--r); background: var(--photo); max-width: min(92vw, 820px); width: 100%; }
+dialog::backdrop { background: rgba(8, 12, 15, 0.86); }
+dialog img { display: block; width: 100%; height: auto; }
+dialog p { margin: 0; padding: 12px 16px; background: var(--ink); color: var(--text); display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+dialog button { min-height: 40px; padding: 0 16px; border: 1px solid var(--line); border-radius: var(--r); background: transparent; color: var(--text); font: inherit; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="wrap">
+    <a href="./"><img src="catalogue/logo.png" alt="ThinkPro Academy" width="195" height="46"></a>
+    <a class="back" href="./#equipment">&larr; Back to the proposal</a>
+  </div>
+  <nav class="wrap jump" aria-label="Vocations"><a href="#agriculture-gardening">Agriculture &amp; Gardening</a><a href="#food-production">Food Production</a><a href="#electronics-mechatronics">Electronics/Mechatronics</a><a href="#it-ites">IT/ITeS</a><a href="#healthcare">Healthcare</a><a href="#bfsi">BFSI</a></nav>
+</div>
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Composite Skill Lab</p>
+    <h1>Equipment Catalogue</h1>
+    <p class="lede">Every item across six vocations, with its specification, the quantity for a batch of 40, and how it is used in the curriculum. Photos are illustrative; supplied makes and models may differ.</p>
+  </section>
+  
+    <section class="vocation" id="agriculture-gardening">
+      <header>
+        <p class="code">CBSE Code 408</p>
+        <h2>Agriculture &amp; Gardening</h2>
+        <p class="intro">Hand tools and instruments for organic farming, gardening, and hydroponics — sourced per CBSE Annexure 1, §7.1.</p>
+        <p class="count">22 items</p>
+      </header>
+      <ul class="grid">
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-air-thermometer-hygrometer.webp" data-name="Air Thermometer &amp; Hygrometer" aria-label="Enlarge photo: Air Thermometer &amp; Hygrometer">
+          <img src="catalogue/agriculture-air-thermometer-hygrometer.webp" alt="Air Thermometer &amp; Hygrometer" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Air Thermometer &amp; Hygrometer</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>LCD Portable Digital</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Measures temperature and humidity to teach how climate affects plant growth</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-budding-grafting-knife.webp" data-name="Budding/Grafting Knife" aria-label="Enlarge photo: Budding/Grafting Knife">
+          <img src="catalogue/agriculture-budding-grafting-knife.webp" alt="Budding/Grafting Knife" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Budding/Grafting Knife</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>2 SS blades + brass budder</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Used for plant propagation techniques like budding and grafting</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-drip-irrigation-unit.webp" data-name="Drip Irrigation Unit" aria-label="Enlarge photo: Drip Irrigation Unit">
+          <img src="catalogue/agriculture-drip-irrigation-unit.webp" alt="Drip Irrigation Unit" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Drip Irrigation Unit</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>16mm main pipe, feeder lines, emitters</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Teaches water-efficient irrigation techniques used in modern farming</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-pot-gamla.webp" data-name="Pot (Gamla)" aria-label="Enlarge photo: Pot (Gamla)">
+          <img src="catalogue/agriculture-pot-gamla.webp" alt="Pot (Gamla)" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Pot (Gamla)</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>4–6 inch, plastic</dd></div>
+            <div><dt>Qty</dt><dd>5</dd></div>
+          </dl>
+          <p>Container for potting demonstrations and seedling growth</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-hand-hoe.webp" data-name="Hand Hoe" aria-label="Enlarge photo: Hand Hoe">
+          <img src="catalogue/agriculture-hand-hoe.webp" alt="Hand Hoe" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hand Hoe</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>15x10mm, wooden handle</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Used for weeding and loosening soil around plants</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-hand-rake.webp" data-name="Hand Rake" aria-label="Enlarge photo: Hand Rake">
+          <img src="catalogue/agriculture-hand-rake.webp" alt="Hand Rake" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hand Rake</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>29.5x132.5x8.5cm, 12-tooth</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Clears debris and levels soil before planting</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-hand-trowel.webp" data-name="Hand Trowel" aria-label="Enlarge photo: Hand Trowel">
+          <img src="catalogue/agriculture-hand-trowel.webp" alt="Hand Trowel" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hand Trowel</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>11.5x2.5 inch, plastic handle</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Basic digging and transplanting tool for small-scale gardening</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-home-garden-gloves.webp" data-name="Home Garden Gloves" aria-label="Enlarge photo: Home Garden Gloves">
+          <img src="catalogue/agriculture-home-garden-gloves.webp" alt="Home Garden Gloves" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Home Garden Gloves</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Pairs</dd></div>
+            <div><dt>Qty</dt><dd>20</dd></div>
+          </dl>
+          <p>Protects hands during soil work and tool handling</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-hydroponic-tray.webp" data-name="Hydroponic Tray" aria-label="Enlarge photo: Hydroponic Tray">
+          <img src="catalogue/agriculture-hydroponic-tray.webp" alt="Hydroponic Tray" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hydroponic Tray</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>HDPE, 2x1 ft</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Introduces soil-less farming techniques (hydroponics)</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-measuring-tape.webp" data-name="Measuring Tape" aria-label="Enlarge photo: Measuring Tape">
+          <img src="catalogue/agriculture-measuring-tape.webp" alt="Measuring Tape" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Measuring Tape</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>50m</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Used for plot layout and spacing measurement</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-plastic-beaker.webp" data-name="Plastic Beaker" aria-label="Enlarge photo: Plastic Beaker">
+          <img src="catalogue/agriculture-plastic-beaker.webp" alt="Plastic Beaker" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Plastic Beaker</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>250 ml</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Measures liquid fertilizers and solutions accurately</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-plastic-bucket.webp" data-name="Plastic Bucket" aria-label="Enlarge photo: Plastic Bucket">
+          <img src="catalogue/agriculture-plastic-bucket.webp" alt="Plastic Bucket" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Plastic Bucket</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>15 lit capacity</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>General-purpose container for water, soil mix, or produce</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-plastic-pan-gamla.webp" data-name="Plastic Pan (Gamla)" aria-label="Enlarge photo: Plastic Pan (Gamla)">
+          <img src="catalogue/agriculture-plastic-pan-gamla.webp" alt="Plastic Pan (Gamla)" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Plastic Pan (Gamla)</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Diameter 14 inch</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Larger container for bigger plants or demonstration beds</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-multipurpose-scissor.webp" data-name="Multipurpose Scissor" aria-label="Enlarge photo: Multipurpose Scissor">
+          <img src="catalogue/agriculture-multipurpose-scissor.webp" alt="Multipurpose Scissor" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Multipurpose Scissor</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel, 200mm</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Trims plants and cuts garden twine</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-secateurs.webp" data-name="Secateurs" aria-label="Enlarge photo: Secateurs">
+          <img src="catalogue/agriculture-secateurs.webp" alt="Secateurs" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Secateurs</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>SS, 15mm cutting, lock nut</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Precision pruning of branches and stems</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-garden-spade.webp" data-name="Garden Spade" aria-label="Enlarge photo: Garden Spade">
+          <img src="catalogue/agriculture-garden-spade.webp" alt="Garden Spade" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Garden Spade</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Medium blade, 3ft handle</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Digging and turning soil for planting beds</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-sickle.webp" data-name="Sickle" aria-label="Enlarge photo: Sickle">
+          <img src="catalogue/agriculture-sickle.webp" alt="Sickle" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Sickle</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Blade 18in, wooden handle</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Harvesting crops and cutting tall grass/fodder</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-soil-test-kit.webp" data-name="Soil Test Kit" aria-label="Enlarge photo: Soil Test Kit">
+          <img src="catalogue/agriculture-soil-test-kit.webp" alt="Soil Test Kit" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Soil Test Kit</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>NPK + pH tablets or meter</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Tests soil nutrients and pH to guide fertilization decisions</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-hand-pump-sprayer.webp" data-name="Hand-Pump Sprayer" aria-label="Enlarge photo: Hand-Pump Sprayer">
+          <img src="catalogue/agriculture-hand-pump-sprayer.webp" alt="Hand-Pump Sprayer" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hand-Pump Sprayer</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>2 Ltr, pressure pump</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Applies pesticides, fertilizers, or water in controlled amounts</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-watering-can.webp" data-name="Watering Can" aria-label="Enlarge photo: Watering Can">
+          <img src="catalogue/agriculture-watering-can.webp" alt="Watering Can" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Watering Can</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>5 lit, plastic</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Manual watering of plants and seedlings</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-weeding-hook-khurpi.webp" data-name="Weeding Hook (Khurpi)" aria-label="Enlarge photo: Weeding Hook (Khurpi)">
+          <img src="catalogue/agriculture-weeding-hook-khurpi.webp" alt="Weeding Hook (Khurpi)" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Weeding Hook (Khurpi)</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Curved, 5 inch</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Removes weeds without damaging plant roots</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/agriculture-weighing-scale.webp" data-name="Weighing Scale" aria-label="Enlarge photo: Weighing Scale">
+          <img src="catalogue/agriculture-weighing-scale.webp" alt="Weighing Scale" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Weighing Scale</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Kitchen grade, 2Kg x 10g</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Weighs harvested produce, seeds, and inputs</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+    <section class="vocation" id="food-production">
+      <header>
+        <p class="code">CBSE Code 409</p>
+        <h2>Food Production</h2>
+        <p class="intro">Kitchen equipment and utensils for food preparation, cooking, and hygiene practices — sourced per CBSE Annexure 1, §7.2.</p>
+        <p class="count">32 items</p>
+      </header>
+      <ul class="grid">
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-digital-kitchen-balance.webp" data-name="Digital Kitchen Balance" aria-label="Enlarge photo: Digital Kitchen Balance">
+          <img src="catalogue/food-digital-kitchen-balance.webp" alt="Digital Kitchen Balance" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Digital Kitchen Balance</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>ISI Mark, 1 kg capacity</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Accurately measures ingredients for recipes and portion control</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-dust-pan.webp" data-name="Dust Pan" aria-label="Enlarge photo: Dust Pan">
+          <img src="catalogue/food-dust-pan.webp" alt="Dust Pan" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Dust Pan</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Plastic, medium</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Kitchen cleanliness and waste collection</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-electric-gas-oven.webp" data-name="Electric/Gas Oven" aria-label="Enlarge photo: Electric/Gas Oven">
+          <img src="catalogue/food-electric-gas-oven.webp" alt="Electric/Gas Oven" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Electric/Gas Oven</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>—</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Baking, roasting, and grilling food items</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-frying-pan.webp" data-name="Frying Pan" aria-label="Enlarge photo: Frying Pan">
+          <img src="catalogue/food-frying-pan.webp" alt="Frying Pan" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Frying Pan</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>SS with copper bottom</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Sauteing and frying — core cooking technique practice</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-gas-lighter.webp" data-name="Gas Lighter" aria-label="Enlarge photo: Gas Lighter">
+          <img src="catalogue/food-gas-lighter.webp" alt="Gas Lighter" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Gas Lighter</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless Steel</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Safely ignites stove burners</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-glass-container.webp" data-name="Glass Container" aria-label="Enlarge photo: Glass Container">
+          <img src="catalogue/food-glass-container.webp" alt="Glass Container" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Glass Container</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>0.5kg, plastic lid</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Storage of dry ingredients and prepared food</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-grater-shredder.webp" data-name="Grater/Shredder" aria-label="Enlarge photo: Grater/Shredder">
+          <img src="catalogue/food-grater-shredder.webp" alt="Grater/Shredder" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Grater/Shredder</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Grates vegetables, cheese, and other ingredients</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-chikki-slicer-roller-cutter.webp" data-name="Chikki Slicer/Roller Cutter" aria-label="Enlarge photo: Chikki Slicer/Roller Cutter">
+          <img src="catalogue/food-chikki-slicer-roller-cutter.webp" alt="Chikki Slicer/Roller Cutter" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Chikki Slicer/Roller Cutter</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Cuts and portions sweets, dough, and snacks</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-hindalium-container.webp" data-name="Hindalium Container" aria-label="Enlarge photo: Hindalium Container">
+          <img src="catalogue/food-hindalium-container.webp" alt="Hindalium Container" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hindalium Container</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>3 ltr</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Cooking and storage vessel for larger quantities</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-kitchen-knife-set.webp" data-name="Kitchen Knife Set" aria-label="Enlarge photo: Kitchen Knife Set">
+          <img src="catalogue/food-kitchen-knife-set.webp" alt="Kitchen Knife Set" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Kitchen Knife Set</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>SS, medium size</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Cutting, chopping, and dicing ingredients</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-measuring-mug-cup.webp" data-name="Measuring Mug/Cup" aria-label="Enlarge photo: Measuring Mug/Cup">
+          <img src="catalogue/food-measuring-mug-cup.webp" alt="Measuring Mug/Cup" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Measuring Mug/Cup</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Plastic/Glass, 250ml</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Accurate liquid measurement for recipes</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-measuring-spoons.webp" data-name="Measuring Spoons" aria-label="Enlarge photo: Measuring Spoons">
+          <img src="catalogue/food-measuring-spoons.webp" alt="Measuring Spoons" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Measuring Spoons</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Plastic</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Precise measurement of small ingredient quantities</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-mixer-grinder.webp" data-name="Mixer Grinder" aria-label="Enlarge photo: Mixer Grinder">
+          <img src="catalogue/food-mixer-grinder.webp" alt="Mixer Grinder" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Mixer Grinder</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>ISI, two jars, 800W</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Blending, grinding spices, and making batters</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-plastic-bucket.webp" data-name="Plastic Bucket" aria-label="Enlarge photo: Plastic Bucket">
+          <img src="catalogue/food-plastic-bucket.webp" alt="Plastic Bucket" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Plastic Bucket</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Plastic, 10 ltr</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Water storage and washing ingredients</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-plastic-container.webp" data-name="Plastic Container" aria-label="Enlarge photo: Plastic Container">
+          <img src="catalogue/food-plastic-container.webp" alt="Plastic Container" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Plastic Container</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Food grade, set of 4</dd></div>
+            <div><dt>Qty</dt><dd>6</dd></div>
+          </dl>
+          <p>Food storage and organization</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-plastic-dustbin.webp" data-name="Plastic Dustbin" aria-label="Enlarge photo: Plastic Dustbin">
+          <img src="catalogue/food-plastic-dustbin.webp" alt="Plastic Dustbin" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Plastic Dustbin</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Plastic</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Waste disposal in the kitchen</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-polpat-latan-rolling-board-pin.webp" data-name="Polpat &amp; Latan (Rolling Board &amp; Pin)" aria-label="Enlarge photo: Polpat &amp; Latan (Rolling Board &amp; Pin)">
+          <img src="catalogue/food-polpat-latan-rolling-board-pin.webp" alt="Polpat &amp; Latan (Rolling Board &amp; Pin)" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Polpat &amp; Latan (Rolling Board &amp; Pin)</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Wood</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Rolling dough for rotis, parathas, and pastries</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-pressure-cooker.webp" data-name="Pressure Cooker" aria-label="Enlarge photo: Pressure Cooker">
+          <img src="catalogue/food-pressure-cooker.webp" alt="Pressure Cooker" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Pressure Cooker</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Aluminium, 5 Ltr</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Fast, efficient cooking of grains, lentils, and curries</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-scissors.webp" data-name="Scissors" aria-label="Enlarge photo: Scissors">
+          <img src="catalogue/food-scissors.webp" alt="Scissors" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Scissors</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>1 medium, 1 large</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Cutting packaging, herbs, or food items</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-cooking-spoon-set.webp" data-name="Cooking Spoon Set" aria-label="Enlarge photo: Cooking Spoon Set">
+          <img src="catalogue/food-cooking-spoon-set.webp" alt="Cooking Spoon Set" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Cooking Spoon Set</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Stirring, serving, and cooking food</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-sieve-steel.webp" data-name="Sieve (Steel)" aria-label="Enlarge photo: Sieve (Steel)">
+          <img src="catalogue/food-sieve-steel.webp" alt="Sieve (Steel)" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Sieve (Steel)</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless Steel</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Sifting flour and straining liquids</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-sieve-plastic.webp" data-name="Sieve (Plastic)" aria-label="Enlarge photo: Sieve (Plastic)">
+          <img src="catalogue/food-sieve-plastic.webp" alt="Sieve (Plastic)" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Sieve (Plastic)</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Multiple sieving plates</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Straining and washing smaller food items</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-single-burner-stove.webp" data-name="Single Burner Stove" aria-label="Enlarge photo: Single Burner Stove">
+          <img src="catalogue/food-single-burner-stove.webp" alt="Single Burner Stove" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Single Burner Stove</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>ISI Mark, with pipe &amp; clip</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Primary cooking heat source for practicals</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-pot-containers.webp" data-name="Pot Containers" aria-label="Enlarge photo: Pot Containers">
+          <img src="catalogue/food-pot-containers.webp" alt="Pot Containers" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Pot Containers</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>SS, 1L and 2L capacity</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Cooking and storing food in varying quantities</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-stainless-steel-plates.webp" data-name="Stainless Steel Plates" aria-label="Enlarge photo: Stainless Steel Plates">
+          <img src="catalogue/food-stainless-steel-plates.webp" alt="Stainless Steel Plates" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Stainless Steel Plates</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless Steel</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Serving and plating prepared dishes</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-steel-bowls.webp" data-name="Steel Bowls" aria-label="Enlarge photo: Steel Bowls">
+          <img src="catalogue/food-steel-bowls.webp" alt="Steel Bowls" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Steel Bowls</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Diameter 6&quot;</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Mixing ingredients and serving food</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-table-spoons.webp" data-name="Table Spoons" aria-label="Enlarge photo: Table Spoons">
+          <img src="catalogue/food-table-spoons.webp" alt="Table Spoons" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Table Spoons</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel</dd></div>
+            <div><dt>Qty</dt><dd>12</dd></div>
+          </dl>
+          <p>Eating and serving utensils</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-tong.webp" data-name="Tong" aria-label="Enlarge photo: Tong">
+          <img src="catalogue/food-tong.webp" alt="Tong" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Tong</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Steel</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Safely handling hot food items</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-vegetable-peeler.webp" data-name="Vegetable Peeler" aria-label="Enlarge photo: Vegetable Peeler">
+          <img src="catalogue/food-vegetable-peeler.webp" alt="Vegetable Peeler" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Vegetable Peeler</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Peeling skins off vegetables and fruits</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-water-container-jug.webp" data-name="Water Container (Jug)" aria-label="Enlarge photo: Water Container (Jug)">
+          <img src="catalogue/food-water-container-jug.webp" alt="Water Container (Jug)" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Water Container (Jug)</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>SS, 1 litre capacity</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Storing and serving drinking water</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-whisker.webp" data-name="Whisker" aria-label="Enlarge photo: Whisker">
+          <img src="catalogue/food-whisker.webp" alt="Whisker" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Whisker</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Whisking eggs, batters, and sauces</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/food-pot-lifter.webp" data-name="Pot Lifter" aria-label="Enlarge photo: Pot Lifter">
+          <img src="catalogue/food-pot-lifter.webp" alt="Pot Lifter" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Pot Lifter</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Stainless steel</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Safely lifting and handling hot pots</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+    <section class="vocation" id="electronics-mechatronics">
+      <header>
+        <p class="code">CBSE Code 420</p>
+        <h2>Electronics/Mechatronics</h2>
+        <p class="intro">ThinkPro's integrated construction kit replaces CBSE's individual component list — a single, reusable, snap-together system covering microcontrollers, sensors, and mechanical building.</p>
+        <p class="count">1 item</p>
+      </header>
+      <ul class="grid">
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/electronics-mechatronics-thinkpro-robotics-electronics-construction-kit.webp" data-name="ThinkPro Robotics/Electronics Construction Kit" aria-label="Enlarge photo: ThinkPro Robotics/Electronics Construction Kit">
+          <img src="catalogue/electronics-mechatronics-thinkpro-robotics-electronics-construction-kit.webp" alt="ThinkPro Robotics/Electronics Construction Kit" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>ThinkPro Robotics/Electronics Construction Kit</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Microcontroller + sensors + snap-together construction + electrical components kit</dd></div>
+            <div><dt>Qty</dt><dd>10</dd></div>
+          </dl>
+          <p>All-in-one hands-on kit for building robotics, circuits, and IoT/electronics projects — no soldering required. Shared 4 students/kit.</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+    <section class="vocation" id="it-ites">
+      <header>
+        <p class="code">CBSE Code 402</p>
+        <h2>IT/ITeS</h2>
+        <p class="intro">The school's existing computer lab is reused; only the items below are newly added, per CBSE's core spec.</p>
+        <p class="count">2 items</p>
+      </header>
+      <ul class="grid">
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/it-ites-webcam.webp" data-name="Webcam" aria-label="Enlarge photo: Webcam">
+          <img src="catalogue/it-ites-webcam.webp" alt="Webcam" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Webcam</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>720p minimum</dd></div>
+            <div><dt>Qty</dt><dd>20</dd></div>
+          </dl>
+          <p>Enables video-based learning, online assessments, and AI/vision-related projects</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/it-ites-headphone-with-mic.webp" data-name="Headphone with Mic" aria-label="Enlarge photo: Headphone with Mic">
+          <img src="catalogue/it-ites-headphone-with-mic.webp" alt="Headphone with Mic" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Headphone with Mic</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Basic</dd></div>
+            <div><dt>Qty</dt><dd>20</dd></div>
+          </dl>
+          <p>Supports typing practice, multimedia learning, and online classes</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+    <section class="vocation" id="healthcare">
+      <header>
+        <p class="code">CBSE Code 413</p>
+        <h2>Healthcare</h2>
+        <p class="intro">Devices and training aids for first aid, vital-sign monitoring, and patient-care basics — sourced per CBSE Annexure 1, §7.9.</p>
+        <p class="count">20 items</p>
+      </header>
+      <ul class="grid">
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-aaa-batteries.webp" data-name="AAA Batteries" aria-label="Enlarge photo: AAA Batteries">
+          <img src="catalogue/healthcare-aaa-batteries.webp" alt="AAA Batteries" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>AAA Batteries</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Pack of 10</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Powers portable medical devices used in practicals</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-blood-pressure-machine.webp" data-name="Blood Pressure Machine" aria-label="Enlarge photo: Blood Pressure Machine">
+          <img src="catalogue/healthcare-blood-pressure-machine.webp" alt="Blood Pressure Machine" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Blood Pressure Machine</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Digital</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Teaches students to measure and interpret blood pressure</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-cotton.webp" data-name="Cotton" aria-label="Enlarge photo: Cotton">
+          <img src="catalogue/healthcare-cotton.webp" alt="Cotton" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Cotton</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Cotton roll</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Wound dressing and first-aid demonstrations</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-cpr-mannequin.webp" data-name="CPR Mannequin" aria-label="Enlarge photo: CPR Mannequin">
+          <img src="catalogue/healthcare-cpr-mannequin.webp" alt="CPR Mannequin" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>CPR Mannequin</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Basic training grade</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Hands-on practice of CPR and resuscitation techniques</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-digital-thermometer.webp" data-name="Digital Thermometer" aria-label="Enlarge photo: Digital Thermometer">
+          <img src="catalogue/healthcare-digital-thermometer.webp" alt="Digital Thermometer" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Digital Thermometer</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Plastic digital</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Measures body temperature accurately</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-gloves.webp" data-name="Gloves" aria-label="Enlarge photo: Gloves">
+          <img src="catalogue/healthcare-gloves.webp" alt="Gloves" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Gloves</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Disposable, pack of 100</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Hygiene and infection control during practicals</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-glucometer.webp" data-name="Glucometer" aria-label="Enlarge photo: Glucometer">
+          <img src="catalogue/healthcare-glucometer.webp" alt="Glucometer" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Glucometer</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>With strips &amp; lancet device</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Teaches blood glucose measurement and diabetes awareness</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-growth-stature-meter.webp" data-name="Growth Stature Meter" aria-label="Enlarge photo: Growth Stature Meter">
+          <img src="catalogue/healthcare-growth-stature-meter.webp" alt="Growth Stature Meter" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Growth Stature Meter</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>200cm wall-mounted roll ruler</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Measures height for growth-monitoring exercises</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-hand-sanitizer.webp" data-name="Hand Sanitizer" aria-label="Enlarge photo: Hand Sanitizer">
+          <img src="catalogue/healthcare-hand-sanitizer.webp" alt="Hand Sanitizer" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hand Sanitizer</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>500 ml bottle</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Hand hygiene practice</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-hot-water-bag.webp" data-name="Hot Water Bag" aria-label="Enlarge photo: Hot Water Bag">
+          <img src="catalogue/healthcare-hot-water-bag.webp" alt="Hot Water Bag" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Hot Water Bag</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>—</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Demonstrates basic patient comfort care techniques</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-mercury-thermometer.webp" data-name="Mercury Thermometer" aria-label="Enlarge photo: Mercury Thermometer">
+          <img src="catalogue/healthcare-mercury-thermometer.webp" alt="Mercury Thermometer" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Mercury Thermometer</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>10 cm, outside glass</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Comparative teaching tool alongside digital thermometers</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-ppe-kit.webp" data-name="PPE Kit" aria-label="Enlarge photo: PPE Kit">
+          <img src="catalogue/healthcare-ppe-kit.webp" alt="PPE Kit" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>PPE Kit</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>40GSM disposable isolation gowns</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Familiarizes students with personal protective equipment protocols</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-pulse-oximeter.webp" data-name="Pulse Oximeter" aria-label="Enlarge photo: Pulse Oximeter">
+          <img src="catalogue/healthcare-pulse-oximeter.webp" alt="Pulse Oximeter" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Pulse Oximeter</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Fingertip digital</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Measures blood oxygen saturation levels</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-red-colour.webp" data-name="Red Colour" aria-label="Enlarge photo: Red Colour">
+          <img src="catalogue/healthcare-red-colour.webp" alt="Red Colour" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Red Colour</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>125 ml tube</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Used for staining/coloring demonstration purposes</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-reflex-check-hammer.webp" data-name="Reflex Check Hammer" aria-label="Enlarge photo: Reflex Check Hammer">
+          <img src="catalogue/healthcare-reflex-check-hammer.webp" alt="Reflex Check Hammer" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Reflex Check Hammer</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>—</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Demonstrates basic neurological examination technique</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-scissors.webp" data-name="Scissors" aria-label="Enlarge photo: Scissors">
+          <img src="catalogue/healthcare-scissors.webp" alt="Scissors" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Scissors</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Everyday use</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>General-purpose cutting for bandages and materials</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-sterilium.webp" data-name="Sterilium" aria-label="Enlarge photo: Sterilium">
+          <img src="catalogue/healthcare-sterilium.webp" alt="Sterilium" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Sterilium</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>500 ml disinfectant</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Surface and hand disinfection practice</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-syringes.webp" data-name="Syringes" aria-label="Enlarge photo: Syringes">
+          <img src="catalogue/healthcare-syringes.webp" alt="Syringes" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Syringes</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Reusable, training-grade</dd></div>
+            <div><dt>Qty</dt><dd>6</dd></div>
+          </dl>
+          <p>Demonstrates injection technique (non-patient training use)</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-towels.webp" data-name="Towels" aria-label="Enlarge photo: Towels">
+          <img src="catalogue/healthcare-towels.webp" alt="Towels" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Towels</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Cotton, 30x30cm</dd></div>
+            <div><dt>Qty</dt><dd>4</dd></div>
+          </dl>
+          <p>Hygiene and patient-care practicals</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/healthcare-weighing-scale.webp" data-name="Weighing Scale" aria-label="Enlarge photo: Weighing Scale">
+          <img src="catalogue/healthcare-weighing-scale.webp" alt="Weighing Scale" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Weighing Scale</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Analog</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Measures body weight for health assessments</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+    <section class="vocation" id="bfsi">
+      <header>
+        <p class="code">CBSE Code 405 / 411</p>
+        <h2>BFSI</h2>
+        <p class="intro">CBSE requires no tools for this sector (§3.2.12) — the items below are ThinkPro's optional value-add for hands-on financial literacy.</p>
+        <p class="count">4 items</p>
+      </header>
+      <ul class="grid">
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/bfsi-financial-literacy-simulation-kit.webp" data-name="Financial Literacy Simulation Kit" aria-label="Enlarge photo: Financial Literacy Simulation Kit">
+          <img src="catalogue/bfsi-financial-literacy-simulation-kit.webp" alt="Financial Literacy Simulation Kit" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Financial Literacy Simulation Kit</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Mock currency, cheque books, forms</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Hands-on practice with real-world banking documents and transactions</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/bfsi-financial-literacy-board-games.webp" data-name="Financial Literacy Board Games" aria-label="Enlarge photo: Financial Literacy Board Games">
+          <img src="catalogue/bfsi-financial-literacy-board-games.webp" alt="Financial Literacy Board Games" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Financial Literacy Board Games</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>—</dd></div>
+            <div><dt>Qty</dt><dd>2</dd></div>
+          </dl>
+          <p>Gamified learning of budgeting and investment concepts</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/bfsi-basic-calculators.webp" data-name="Basic Calculators" aria-label="Enlarge photo: Basic Calculators">
+          <img src="catalogue/bfsi-basic-calculators.webp" alt="Basic Calculators" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Basic Calculators</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>—</dd></div>
+            <div><dt>Qty</dt><dd>20</dd></div>
+          </dl>
+          <p>Supports financial calculations during practicals</p>
+        </div>
+      </li>
+      <li class="card">
+        <button type="button" class="photo" data-src="catalogue/bfsi-case-study-workbooks.webp" data-name="Case Study Workbooks" aria-label="Enlarge photo: Case Study Workbooks">
+          <img src="catalogue/bfsi-case-study-workbooks.webp" alt="Case Study Workbooks" width="1024" height="1024" loading="lazy" decoding="async">
+        </button>
+        <div class="body">
+          <h3>Case Study Workbooks</h3>
+          <dl>
+            <div><dt>Specification</dt><dd>Printed</dd></div>
+            <div><dt>Qty</dt><dd>1</dd></div>
+          </dl>
+          <p>Real-world BFSI case studies for applied learning</p>
+        </div>
+      </li>
+      </ul>
+    </section>
+</main>
+<footer class="foot"><div class="wrap">ThinkPro Academy &middot; Composite Skill Lab equipment catalogue &middot; 81 items</div></footer>
+<dialog id="zoom" aria-label="Enlarged photo"><img alt=""><p><span></span><button type="button" autofocus>Close</button></p></dialog>
+<script>
+(function () {
+  var dialog = document.getElementById('zoom');
+  if (!dialog.showModal) return;
+  var img = dialog.querySelector('img'), caption = dialog.querySelector('span');
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('.photo[data-src]');
+    if (!button) return;
+    img.src = button.dataset.src; img.alt = button.dataset.name; caption.textContent = button.dataset.name;
+    dialog.showModal();
+  });
+  dialog.addEventListener('click', function (event) { if (event.target === dialog || event.target.tagName === 'BUTTON') dialog.close(); });
+})();
+</script>
+</body>
+</html>
