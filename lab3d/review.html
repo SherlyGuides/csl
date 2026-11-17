@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Model review · CSL lab</title>
+<style>body{margin:0;font:13px/1.4 Archivo,Helvetica,Arial,sans-serif;background:#f4efe7;color:#1b242d}h1{font-size:18px;margin:14px 16px}
+.row{display:grid;grid-template-columns:220px 300px 300px 1fr;gap:10px;align-items:center;padding:10px 16px;border-top:1px solid #0001}
+.row img{width:220px;height:220px;object-fit:contain;background:#fff;border-radius:8px}.row canvas{width:300px;height:300px;border-radius:8px;background:#e9e2d6}
+.cap{font-size:11px;color:#5a6670;text-transform:uppercase;letter-spacing:.05em}.d b{color:#ef7d37}.bad{color:#c62828;font-weight:600}</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.170.0/examples/jsm/"}}</script></head>
+<body><h1 id="t">Model review</h1><div id="rows"></div>
+<script type="module">
+// review.html?file=js/hifi/agri-instruments.js   (three.js HIFI module)   or   review.html?glb=2,5,7  (models/item-N.glb)
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { ITEM_MODELS } from './js/models.js';
+import { ITEMS } from './catalogue-data.js';
+const q = new URLSearchParams(location.search), file = q.get('file'), glb = q.get('glb');
+const R = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); R.setSize(600, 600); R.toneMapping = THREE.ACESFilmicToneMapping;
+const pm = new THREE.PMREMGenerator(R), env = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+const box = o => new THREE.Box3().setFromObject(o), cm = v => (v * 100).toFixed(1);
+function shot(obj) {
+  const s = new THREE.Scene(); s.background = new THREE.Color('#e9e2d6'); s.environment = env; s.environmentIntensity = 0.5;
+  s.add(new THREE.HemisphereLight('#fff', '#998', 1.3)); const d = new THREE.DirectionalLight('#fff', 2); d.position.set(2, 4, 3); s.add(d); s.add(obj);
+  const b = box(obj), c = b.getCenter(new THREE.Vector3()), r = Math.max(b.getSize(new THREE.Vector3()).length(), 0.12);
+  const g = new THREE.GridHelper(Math.ceil(r * 3 * 10) / 10 * 2, Math.ceil(r * 3 * 10) * 2, '#c4441c', '#b9b0a2'); g.position.set(c.x, b.min.y - 0.0005, c.z); s.add(g); // 10 cm cells
+  const cam = new THREE.PerspectiveCamera(35, 1, 0.005, 50); cam.position.copy(c).add(new THREE.Vector3(0.55, 0.45, 0.9).normalize().multiplyScalar(r * 1.9)); cam.lookAt(c);
+  R.render(s, cam); const cv = document.createElement('canvas'); cv.width = cv.height = 600; cv.getContext('2d').drawImage(R.domElement, 0, 0); return cv;
+}
+const dims = o => { const sz = box(o).getSize(new THREE.Vector3()); return [sz.x, sz.y, sz.z]; };
+let models = {};
+if (file) { const mod = await import('./' + file + '?v=' + Date.now()); models = mod.HIFI ?? mod.default ?? {}; document.getElementById('t').textContent = 'Review: ' + file; }
+if (glb) { const L = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder); for (const s of glb.split(',').map(Number)) { const g = await L.loadAsync(`./models/item-${s}.glb?v=${Date.now()}`); models[s] = () => g.scene.clone(true); } document.getElementById('t').textContent = 'Review: Blender GLBs ' + glb; }
+const out = [];
+for (const [sno, fn] of Object.entries(models)) {
+  const it = ITEMS.find(i => i.sno == sno) ?? { item: '?', spec: '' };
+  let hifi, err = '', tris = 0; try { hifi = fn(); hifi.traverse(m => { if (m.isMesh) tris += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position.count) / 3; }); } catch (e) { err = e.message; }
+  const ph = ITEM_MODELS[sno]?.();
+  const row = document.createElement('div'); row.className = 'row';
+  const dh = hifi ? dims(hifi) : null, dp = ph ? dims(ph) : null, b = hifi && box(hifi);
+  const originOk = b && Math.abs(b.min.y) < 0.003;
+  row.innerHTML = `<div><div class="cap">Catalogue photo</div><img src="../catalogue/${it.img}"></div><div><div class="cap">Current placeholder</div></div><div><div class="cap">New model</div></div>
+   <div class="d"><h3>#${sno} ${it.item}</h3><p>${it.spec}</p><p>New: <b>${dh ? dh.map(cm).join(' × ') : '—'}</b> cm (W×H×D)<br>Placeholder: ${dp ? dp.map(cm).join(' × ') : '—'} cm<br>Triangles: ${Math.round(tris)}<br>
+   Bottom at y=${b ? cm(b.min.y) : '—'} cm ${originOk ? '' : '<span class="bad">(should be 0)</span>'} · centre x/z ${b ? cm((b.min.x + b.max.x) / 2) + ' / ' + cm((b.min.z + b.max.z) / 2) : ''}</p>${err ? `<p class="bad">${err}</p>` : ''}</div>`;
+  if (ph) row.children[1].appendChild(shot(ph)); if (hifi) row.children[2].appendChild(shot(hifi));
+  document.getElementById('rows').appendChild(row);
+  out.push({ sno: +sno, item: it.item, new_cm: dh?.map(v => +cm(v)), placeholder_cm: dp?.map(v => +cm(v)), tris: Math.round(tris), bottom_cm: b ? +cm(b.min.y) : null, err });
+}
+window.__review = out;
+</script></body></html>

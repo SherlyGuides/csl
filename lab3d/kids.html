@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Character lineup · CSL lab</title>
+<style>html,body{margin:0;height:100%;background:#f4efe7;font:13px Archivo,Helvetica,Arial,sans-serif;color:#1b242d;overflow:hidden}
+#c{position:fixed;inset:0}.lab{position:fixed;left:14px;font-weight:700;font-size:15px;background:#fcfaf6e6;padding:6px 10px;border-radius:8px}
+#t1{top:12px}#t2{top:50%}</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.170.0/examples/jsm/"}}</script></head>
+<body><canvas id="c"></canvas><div class="lab" id="t1">Fable · js/kid.js</div><div class="lab" id="t2">Astra · js/kid-astra.js</div>
+<script type="module">
+// kids.html — the same lineup built by both character builders. ?only=astra|fable to show one row.
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+const R = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true }); R.setPixelRatio(Math.min(devicePixelRatio, 2)); R.setSize(innerWidth, innerHeight);
+R.shadowMap.enabled = true; R.toneMapping = THREE.ACESFilmicToneMapping;
+const S = new THREE.Scene(); S.background = new THREE.Color('#f4efe7');
+S.environment = new THREE.PMREMGenerator(R).fromScene(new RoomEnvironment(), 0.04).texture; S.environmentIntensity = 0.45;
+S.add(new THREE.HemisphereLight('#fffaf0', '#b9a991', 1.1));
+const sun = new THREE.DirectionalLight('#fff3e0', 2.0); sun.position.set(3, 6, 5); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -8, right: 8, top: 5, bottom: -5 }); S.add(sun);
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 12), new THREE.MeshStandardMaterial({ color: '#d9d0c2', roughness: 1 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; S.add(floor);
+const cam = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.05, 100); cam.position.set(0, 3.2, 11.5);
+const ctl = new OrbitControls(cam, R.domElement); ctl.target.set(0, 0.6, 0); ctl.update();
+const chair = () => { const g = new THREE.Group(), m = new THREE.MeshStandardMaterial({ color: '#2b3a5e', roughness: 0.5 }); const seat = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.4), m); seat.position.y = 0.44; g.add(seat); return g; };
+const LINE = [
+  { pose: 'stand', seed: 1 }, { pose: 'stand', seed: 2, girl: true }, { pose: 'stand', seed: 4 }, { pose: 'stand', seed: 5, girl: true },
+  { pose: 'sit', act: 'build', seed: 6, goggles: true, chair: true }, { pose: 'sit', act: 'type', seed: 7, girl: true, headphones: true, chair: true },
+  { pose: 'counter', act: 'stir', seed: 8, apron: '#ef7d37' }, { pose: 'kneel', act: 'cpr', seed: 9, girl: true },
+  { pose: 'point', act: 'talk', seed: 3, scale: 1.17, shirt: '#ef7d37', pants: '#2a2f36', girl: true, trousers: true, tie: false },
+];
+const kids = [];
+async function row(file, z, label) {
+  let mod; try { mod = await import(file + '?v=' + Date.now()); } catch (e) { document.getElementById(label).textContent += '  (failed: ' + e.message + ')'; return; }
+  LINE.forEach((o, i) => { const x = (i - (LINE.length - 1) / 2) * 1.05; let k; try { k = mod.makeKid({ ...o }); } catch (e) { console.error(file, e); return; }
+    k.root.position.set(x, 0, z); S.add(k.root); k.root.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); kids.push(k);
+    if (o.chair) { const c = chair(); c.position.set(x, 0, z - 0.02); S.add(c); } });
+}
+const only = new URLSearchParams(location.search).get('only');
+if (only !== 'astra') await row('./js/kid.js', -1.2, 't1');
+if (only !== 'fable') await row('./js/kid-astra.js', 1.2, 't2');
+window.__kids = kids; window.__cam = cam; window.__ctl = ctl;
+const clock = new THREE.Clock();
+(function loop() { const t = clock.getElapsedTime(); kids.forEach(k => k.update?.(t)); ctl.update(); R.render(S, cam); requestAnimationFrame(loop); })();
+addEventListener('resize', () => { R.setSize(innerWidth, innerHeight); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); });
+</script></body></html>

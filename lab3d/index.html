@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F4EFE7">
+<title>Composite Skill Lab in 3D | Aaryans World School, Hubballi · ThinkPro Academy</title>
+<meta name="description" content="Aaryans World School, Hubballi: walk through a 1,152 sq ft CBSE Composite Skill Lab with 40 seats, every catalogue item, and a robotics-first layout.">
+<link rel="icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0E1419;--ink:#1B242D;--ink-2:#25313C;--muted:#A9B7C2;--orange:#EF7D37;--orange-lit:#F79B5E;--paper:#FCFAF6;--plaster:#F4EFE7;--slate:#8FA0AD}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--plaster);font-family:"Archivo",Helvetica Neue,Arial,sans-serif;color:var(--ink)}
+#app{position:fixed;inset:0}
+#app canvas{display:block;touch-action:none}
+.labels{position:absolute;inset:0;pointer-events:none}
+.pin{pointer-events:auto;display:flex;align-items:center;gap:6px;border:0;background:#fcfaf6ee;border-radius:99px;padding:3px 10px 3px 3px;font:600 12px/1 Archivo,sans-serif;color:var(--ink);box-shadow:0 2px 10px #0003;cursor:pointer;white-space:nowrap;transform:translateY(-6px)}
+.pin b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;font-size:11px}
+.pin span{max-width:0;overflow:hidden;transition:max-width .25s}
+.pin:hover span,.pin:focus span{max-width:220px}
+header{position:fixed;left:12px;top:12px;right:12px;display:flex;gap:12px;align-items:flex-start;pointer-events:none;z-index:3}
+.brand{pointer-events:auto;background:var(--ink);color:var(--paper);border-radius:14px;padding:12px 16px;max-width:380px;box-shadow:0 6px 24px #0003}
+.brand small{display:block;color:var(--orange-lit);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.brand h1{margin:4px 0 6px;font-size:20px;font-weight:800;line-height:1.15}
+.stats{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted)}
+.stats b{color:var(--paper);font-size:15px;margin-right:3px}
+.views{position:fixed;left:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:6px;max-width:min(760px,calc(100% - 24px));z-index:3}
+.views button,.tool{border:0;background:#fcfaf6f2;border-radius:99px;padding:7px 12px 7px 8px;font:600 12.5px Archivo,sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 2px 8px #0002;display:flex;align-items:center;gap:6px}
+.views button b{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--c);color:#fff;font-size:10px}
+.views button.on{background:var(--ink);color:var(--paper)}
+.tools{position:fixed;right:12px;bottom:12px;display:flex;flex-direction:column;gap:6px;align-items:flex-end;z-index:3}
+.tool{padding:8px 13px}
+@media (max-width:760px){.tool{padding:7px 10px;font-size:12px}}
+.tool.primary{background:var(--orange);color:#fff}
+.tool input{accent-color:var(--orange);margin:0}
+#card{position:fixed;right:12px;top:12px;width:300px;background:var(--paper);border-radius:14px;box-shadow:0 10px 30px #0003;padding:14px;z-index:4}
+#card img{width:100%;height:160px;object-fit:contain;background:#fff;border-radius:10px;margin-bottom:10px}
+#card .cz{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+#card .cz::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
+#card h3{margin:4px 0 6px;font-size:18px}
+#card p{margin:0 0 8px;font-size:13.5px;line-height:1.45;color:#3c4954}
+#card .q{font-size:12.5px;color:#5a6670}
+#card .q b{color:var(--orange);font-size:16px}
+#card .x{position:absolute;right:8px;top:8px;border:0;background:#0001;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:16px}
+#list{position:fixed;right:12px;top:12px;bottom:118px;width:300px;background:var(--paper);border-radius:14px;box-shadow:0 10px 30px #0003;display:none;flex-direction:column;z-index:3;overflow:hidden}
+.list-open #list{display:flex}
+.list-open #card{right:324px}
+#list .hd{padding:12px 14px 8px;border-bottom:1px solid #0001}
+#list .hd strong{display:block;font-size:15px}
+#list .hd span{font-size:12px;color:#5a6670}
+#q{width:100%;margin-top:8px;border:1px solid #d6cfc3;border-radius:9px;padding:8px 10px;font:14px Archivo,sans-serif;background:#fff}
+#items{overflow:auto;padding:4px 8px 12px}
+#items h4{margin:12px 6px 4px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--c);display:flex;justify-content:space-between}
+#items h4 small{color:#8a96a0}
+#items button{display:flex;justify-content:space-between;gap:8px;width:100%;border:0;background:none;text-align:left;padding:6px;border-radius:7px;font:13px Archivo,sans-serif;color:var(--ink);cursor:pointer}
+#items button:hover{background:#efe8dc}
+#items button em{font-style:normal;color:var(--orange);font-weight:600}
+#loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--plaster);font:600 16px Archivo,sans-serif;color:var(--ink);z-index:9;transition:opacity .5s}
+.loaded #loading{opacity:0;pointer-events:none}
+#walkhint{display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#0e1419cc;color:#fff;padding:14px 18px;border-radius:12px;font-size:14px;text-align:center;pointer-events:none;z-index:5}
+.walking #walkhint{display:block;animation:fade 3s 2s forwards}
+@keyframes fade{to{opacity:0}}
+.back{pointer-events:auto;align-self:center;margin-left:auto;background:#fcfaf6f2;border-radius:99px;padding:8px 13px;font:600 12.5px Archivo,sans-serif;color:var(--ink);text-decoration:none;box-shadow:0 2px 8px #0002}
+@media (max-width:760px){
+  .brand{max-width:none;padding:10px 12px}.brand h1{font-size:16px}
+  .views{bottom:104px;flex-wrap:nowrap;overflow-x:auto;max-width:calc(100% - 24px);padding-bottom:2px}
+  .views button{flex:none}
+  .tools{flex-direction:row;left:12px;right:12px;justify-content:flex-start;flex-wrap:wrap}
+  #walk{display:none}
+  #card{left:12px;right:12px;top:auto;bottom:150px;width:auto;max-height:46vh;overflow:auto}#card img{height:110px}
+  #list{left:12px;right:12px;width:auto;top:96px;bottom:150px}.list-open #card{right:12px}
+  .back{display:none}
+}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.170.0/examples/jsm/"}}</script>
+</head>
+<body>
+<div id="app"></div>
+<div id="loading">Setting up the Skill Lab…</div>
+<header>
+  <div class="brand">
+    <small>Aaryans World School, Hubballi · CBSE Composite Skill Lab</small>
+    <h1>The lab in 3D: robotics first, all six vocations in one room</h1>
+    <div class="stats"><span><b>1,152</b>sq ft (36×32 ft)</span><span><b>40</b>seats</span><span><b>10</b>robotics kits</span><span><b>81</b>catalogue items</span></div>
+  </div>
+  <a class="back" href="../">← Proposal</a>
+</header>
+<nav class="views" aria-label="Camera views"></nav>
+<div class="tools">
+  <button class="tool" id="listB">☰ All items</button>
+  <label class="tool"><input type="checkbox" id="kidsT" checked> Students</label>
+  <label class="tool"><input type="checkbox" id="pinsT" checked> Zone pins</label>
+  <label class="tool"><input type="checkbox" id="dance" checked> Zing dances</label>
+  <button class="tool primary" id="walk">Walk inside (WASD)</button>
+</div>
+<aside id="list"><div class="hd"><strong>Equipment in the room</strong><span id="placed"></span><input id="q" type="search" placeholder="Search items, e.g. stove, CPR, kit"></div><div id="items"></div></aside>
+<div id="card" hidden></div>
+<div id="walkhint">Mouse to look · W A S D to walk · Shift to hurry · Esc to exit</div>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

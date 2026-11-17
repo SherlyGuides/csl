@@ -1,0 +1,228 @@
+{
+ "kids": [
+  {
+   "file": "g1_sit_build.glb",
+   "hand_r": [
+    -0.115,
+    0.763,
+    0.496
+   ]
+  },
+  {
+   "file": "b1_sit_build.glb",
+   "hand_r": [
+    -0.131,
+    0.796,
+    0.503
+   ]
+  },
+  {
+   "file": "g2_sit_build.glb",
+   "hand_r": [
+    -0.118,
+    0.783,
+    0.507
+   ]
+  },
+  {
+   "file": "b2_sit_build.glb",
+   "hand_r": [
+    -0.138,
+    0.836,
+    0.533
+   ]
+  },
+  {
+   "file": "g3_sit_build.glb",
+   "hand_r": [
+    -0.111,
+    0.74,
+    0.482
+   ]
+  },
+  {
+   "file": "b3_sit_build.glb",
+   "hand_r": [
+    -0.125,
+    0.77,
+    0.482
+   ]
+  },
+  {
+   "file": "g4_sit_build.glb",
+   "hand_r": [
+    -0.12,
+    0.799,
+    0.519
+   ]
+  },
+  {
+   "file": "b4_sit_build.glb",
+   "hand_r": [
+    -0.141,
+    0.854,
+    0.549
+   ]
+  },
+  {
+   "file": "g2_sit_build.glb",
+   "hand_r": [
+    -0.118,
+    0.783,
+    0.507
+   ]
+  },
+  {
+   "file": "b1_sit_build.glb",
+   "hand_r": [
+    -0.131,
+    0.796,
+    0.503
+   ]
+  },
+  {
+   "file": "g3_sit_build.glb",
+   "hand_r": [
+    -0.111,
+    0.74,
+    0.482
+   ]
+  },
+  {
+   "file": "b4_sit_build.glb",
+   "hand_r": [
+    -0.141,
+    0.854,
+    0.549
+   ]
+  },
+  {
+   "file": "g4_sit_build.glb",
+   "hand_r": [
+    -0.12,
+    0.799,
+    0.519
+   ]
+  },
+  {
+   "file": "b2_sit_build.glb",
+   "hand_r": [
+    -0.138,
+    0.836,
+    0.533
+   ]
+  },
+  {
+   "file": "g1_sit_talk.glb",
+   "hand_r": [
+    -0.115,
+    0.771,
+    0.468
+   ]
+  },
+  {
+   "file": "b3_sit_talk.glb",
+   "hand_r": [
+    -0.125,
+    0.779,
+    0.456
+   ]
+  },
+  {
+   "file": "g4_sit_talk.glb",
+   "hand_r": [
+    -0.12,
+    0.808,
+    0.489
+   ]
+  },
+  {
+   "file": "b1_kneel.glb",
+   "hand_r": [
+    -0.133,
+    0.436,
+    0.339
+   ]
+  },
+  {
+   "file": "g2_watch.glb",
+   "hand_r": [
+    -0.048,
+    1.048,
+    0.235
+   ]
+  },
+  {
+   "file": "b4_counter.glb",
+   "hand_r": [
+    -0.129,
+    1.132,
+    0.385
+   ]
+  },
+  {
+   "file": "b2_sit_type.glb",
+   "hand_r": [
+    -0.138,
+    0.836,
+    0.533
+   ]
+  },
+  {
+   "file": "g3_counter.glb",
+   "hand_r": [
+    -0.1,
+    1.009,
+    0.33
+   ]
+  },
+  {
+   "file": "g1_counter.glb",
+   "hand_r": [
+    -0.103,
+    1.038,
+    0.339
+   ]
+  },
+  {
+   "file": "g4_kneel.glb",
+   "hand_r": [
+    -0.118,
+    0.465,
+    0.352
+   ]
+  },
+  {
+   "file": "b3_sit_idle.glb",
+   "hand_r": [
+    -0.122,
+    0.585,
+    0.25
+   ]
+  },
+  {
+   "file": "g2_counter.glb",
+   "hand_r": [
+    -0.106,
+    1.059,
+    0.346
+   ]
+  },
+  {
+   "file": "b1_reach.glb",
+   "hand_r": [
+    -0.197,
+    1.099,
+    0.457
+   ]
+  },
+  {
+   "file": "tch_point.glb",
+   "hand_r": [
+    -0.526,
+    1.435,
+    0.259
+   ]
+  }
+ ]
+}
