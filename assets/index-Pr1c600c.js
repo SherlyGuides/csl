@@ -230,10 +230,10 @@ var Tm=Object.defineProperty;var Rm=(hn,Ot,Si)=>Ot in hn?Tm(hn,Ot,{enumerable:!0
       </li>`).join("")}
     </ol>
   </section>
-</div>`,Ec=[["mandate","Mandate"],["vocations","Vocations"],["lab","The lab"],["investment","Investment"],["equipment","Equipment"],["roadmap","Roadmap"]];Tl();const Xn=Ll(),wc=!new URLSearchParams(location.search).get("school")&&!/\/for\//.test(location.pathname);Ue("#bar").innerHTML=`
+</div>`,Ec=[["mandate","Mandate"],["vocations","Vocations"],["lab","The lab"],["equipment","Equipment"],["roadmap","Roadmap"]];Tl();const Xn=Ll(),wc=!new URLSearchParams(location.search).get("school")&&!/\/for\//.test(location.pathname);Ue("#bar").innerHTML=`
   <a class="bar-logo" href="#top" aria-label="ThinkPro Academy, back to top"><img src="${Al}" alt="ThinkPro Academy: where education meets innovation" width="195" height="46"></a>
   <nav aria-label="Sections">${Ec.map(([i,e])=>`<a href="#${i}" data-nav="${i}">${e}</a>`).join("")}</nav>`,Ue("#main").innerHTML=[ec(Xn),ic(),sc(),pc(Xn),`
-<section class="section estimator" id="investment" aria-labelledby="estimator-title" data-view="130,-4,68,0.94">
+<section class="section estimator" id="investment" hidden style="display:none" aria-labelledby="estimator-title" data-view="130,-4,68,0.94">
   <style>
     .inv-scroll{margin-top:56px;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
     .inv{width:100%;min-width:760px;border-collapse:collapse;font-size:1rem}
