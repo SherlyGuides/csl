@@ -5,6 +5,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { M, B, C, P, G, at, tex, Panel, FONT, wrapText, STEEL, BLACK } from './kit.js';
 import * as MD from './models.js';
 import { makeKid } from './kid.js';
@@ -21,9 +22,13 @@ const ZONES = {
 
 const app = document.getElementById('app');
 const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));   // retina at 1.5x: sharp enough, ~45% fewer pixels than 2x
 renderer.setSize(app.clientWidth, app.clientHeight);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.autoUpdate = false;   // the room is static: shadows are redrawn only when something loads or changes (markShadows)
+let shadowDirty = 2; const markShadows = () => { shadowDirty = 2; };
+// everything that changes static geometry registers here; the scene is merged + shadows baked once they settle
+const pending = []; const track = (p) => { pending.push(Promise.resolve(p).catch(() => {}).then(markShadows)); return p; };
 renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
 app.appendChild(renderer.domElement);
 const labelR = new CSS2DRenderer(); labelR.setSize(app.clientWidth, app.clientHeight); labelR.domElement.className = 'labels'; app.appendChild(labelR.domElement);
@@ -195,7 +200,7 @@ onWall(MD.counter(2.0, 0.76, 0.65, '#cdbfa8', '#e9e2d6'), 'L', -1.85, 0.65);
 wallAdd('L', MD.ITEM_MODELS[88](), -1.85, 1.5, 0.0, 88);
 // robotics tool wall: real tools hanging on the pegboard's hooks (blender/toolwall.py -> models/toolwall.glb)
 { const tw = new THREE.Group(); at(tw, 1.85, 1.5, 0); walls.L.g.add(tw);
-  new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).load('./models/toolwall.glb', g => { g.scene.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } }); tw.add(g.scene); }); }
+  track(new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync('./models/toolwall.glb').then(g => { g.scene.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } }); tw.add(g.scene); })); }
 wallAdd('L', MD.poster(0.6, 0.8, 'Robotics, IoT & Automation', 'Microcontroller · sensors · motors · gears. CBSE 420 Electronics & Mechatronics.', '#2f9e5b', '⚙'), -2.35, 2.75, 0.01);
 wallAdd('L', MD.poster(0.6, 0.8, 'Build · Test · Improve', 'Every team of 4 shares one ThinkPro kit. Return every part to its tub.', '#ef7d37', '★'), -1.35, 2.75, 0.01);
 const almirah = onWall(MD.almirah(1.22, 2.05, 0.5), 'L', 0.1, 0.5); reg(56, almirah);
@@ -357,7 +362,10 @@ function dressReal(root) {
     mt.needsUpdate = true; });
   return root;
 }
-fetch('./models/people/index.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(idx => {
+// realistic people are ~14 MB, so they load only the first time Students is switched on
+let peopleLoaded = false;
+function loadPeople() { if (peopleLoaded) return; peopleLoaded = true;
+fetch('./models/people/index.json').then(r => r.ok ? r.json() : null).then(idx => {
   (idx?.kids ?? []).forEach((entry, i) => { const k = kids[i]; if (!entry || !k) return;
     realModel(entry.file).then(g => {
       const held = [...k.J.rHand.children];                       // e.g. the watering can
@@ -365,9 +373,11 @@ fetch('./models/people/index.json', { cache: 'no-store' }).then(r => r.ok ? r.js
       k.root.children.forEach(c => c.visible = false);
       k.root.add(model); k.update = () => {}; k.root.userData.real = entry.file;
       if (held.length && entry.hand_r) { const grip = new THREE.Group(); grip.position.fromArray(entry.hand_r); model.add(grip); held.forEach(h => { h.position.set(0, -0.2, 0.02); grip.add(h); }); }
+      markShadows();
     }).catch(e => console.warn('realistic kid failed', entry.file, e));
   });
-});
+}); }
+let kitsLoaded; track(new Promise(r => kitsLoaded = r));
 loader.load('./kits.glb', (gltf) => {
   const src = gltf.scene, kids0 = [...src.children];
   const take = (pred) => { const g = new THREE.Group(); kids0.filter(c => pred(c.name)).forEach(c => g.add(c)); return g; };
@@ -393,14 +403,15 @@ loader.load('./kits.glb', (gltf) => {
   // T10 geared buggy drives the line track
   // Line Following Robot (Grade 3 Session 8 build, fully assembled) drives the arena track
   car = new THREE.Group(); arena.add(car); reg(56, car);
-  loader.load('./models/lfr.glb', (g) => { shadowy(g.scene); car.add(g.scene); }, undefined, (e) => console.warn('lfr.glb failed', e));
+  loader.load('./models/lfr.glb', (g) => { g.scene.traverse(m => { if (m.isMesh) m.receiveShadow = true; }); car.add(g.scene); }, undefined, (e) => console.warn('lfr.glb failed', e));   // moving: no baked shadow
   const rest = centre(take(n => n.startsWith('T10_'))); rest.children.slice().forEach(ch => { if (Math.abs(ch.position.x) > 0.3 || Math.abs(ch.position.z) > 0.24) rest.remove(ch); }); shadowy(rest); at(rest, -X + 0.36, 0.761, -1.98, Math.PI / 2); scene.add(rest); reg(56, rest);
   document.body.classList.add('loaded');
-  buildItemList();
-}, undefined, (e) => { console.error(e); document.getElementById('loading').textContent = 'Could not load kits.glb'; });
+  buildItemList(); kitsLoaded();
+}, undefined, (e) => { console.error(e); kitsLoaded(); document.getElementById('loading').textContent = 'Could not load kits.glb'; });
 
 // ---------------- high-fidelity Blender models (lab3d/models/item-<sno>.glb) ----------------
 // Any item listed in models/manifest.json replaces its placeholder everywhere it appears; the rest keep the placeholder.
+const VER = '20261117';   // bump when models change, so browsers can cache them between visits
 const HIFI_SKIP = new Set([56, 90, 95]); // 56 = real kits from kits.glb, 95 = text-specific signage
 function swapIn(sno, make) {
   for (const holder of itemObjs[sno]) {
@@ -415,12 +426,12 @@ async function applyHifiModules() {
   let files = [];
   try { const r = await fetch('./js/hifi/manifest.json', { cache: 'no-store' }); if (r.ok) files = (await r.json()).files ?? []; } catch { return; }
   for (const f of files) {
-    try { const mod = await import(`./hifi/${f}?v=${Date.now() / 6e4 | 0}`);
+    try { const mod = await import(`./hifi/${f}?v=${VER}`);
       for (const [s, make] of Object.entries(mod.HIFI ?? {})) { const sno = +s; if (HIFI_SKIP.has(sno) || !itemObjs[sno]) continue; try { swapIn(sno, make); } catch (e) { console.warn(`hi-fi ${f} item ${sno} failed`, e); } }
     } catch (e) { console.warn(`hi-fi module ${f} failed, keeping placeholders`, e); }
   }
 }
-applyHifiModules().then(() => setTimeout(fixups, 0));
+const hifiDone = Promise.all([applyHifiModules(), applyHifi()]).then(() => fixups()); track(hifiDone);
 // Post-load fit-ups that depend on the real model shapes
 function fixups() {
   const B3 = (o) => new THREE.Box3().setFromObject(o);
@@ -442,13 +453,12 @@ async function applyHifi() {
   try { const r = await fetch('./models/manifest.json', { cache: 'no-store' }); if (r.ok) list = (await r.json()).items ?? []; } catch { return; }
   await Promise.all(list.filter(s => !HIFI_SKIP.has(s) && itemObjs[s]).map(async (sno) => {
     try {
-      const g = await loader.loadAsync(`./models/item-${sno}.glb?v=${Date.now() / 6e4 | 0}`);
+      const g = await loader.loadAsync(`./models/item-${sno}.glb?v=${VER}`);
       swapIn(sno, () => g.scene.clone(true));
     } catch (e) { console.warn(`hi-fi model for item ${sno} failed, keeping placeholder`, e); }
   }));
   window.__hifi = list;
 }
-applyHifi();
 
 // ---------------- views, walk mode, interaction ----------------
 let tween = null;
@@ -514,10 +524,10 @@ function buildItemList() {
 { let n = 0; document.querySelector('.views').innerHTML = VIEWS.map(v => `<button data-id="${v.id}" style="--c:${v.zone ? ZONES[v.zone].color : '#1b242d'}">${v.pin ? `<b>${++n}</b>` : ''}${v.label}</button>`).join(''); }
 document.querySelector('.views').onclick = e => { const b = e.target.closest('button'); if (b) goView(b.dataset.id); };
 document.getElementById('walk').onclick = () => setMode('walk');
-document.getElementById('kidsT').onchange = e => { kidRoot.visible = e.target.checked; };
+document.getElementById('kidsT').onchange = e => { kidRoot.visible = e.target.checked; if (e.target.checked) loadPeople(); markShadows(); };
 document.getElementById('pinsT').onchange = e => { pins.forEach(p => p.visible = e.target.checked); };
 // students and zone pins start hidden for now (toggle them back on in the toolbar)
-kidRoot.visible = document.getElementById('kidsT').checked; pins.forEach(p => p.visible = document.getElementById('pinsT').checked);
+kidRoot.visible = document.getElementById('kidsT').checked; if (kidRoot.visible) loadPeople(); pins.forEach(p => p.visible = document.getElementById('pinsT').checked);
 document.getElementById('listB').onclick = () => document.body.classList.toggle('list-open');
 
 // start view
@@ -548,12 +558,56 @@ function frame() {
   kids.forEach(k => k.update(t));
   if (car && !window.__pauseCar) placeCar(t);
   if ((slideT += dt) > 0.1) { slideT = 0; drawDisplay(SLIDE); }
+  if (shadowDirty > 0) { shadowDirty--;                         // re-bake shadows with every wall standing, then draw the normal view
+    const vis = Object.values(walls).map(w => w.g.visible); Object.values(walls).forEach(w => w.g.visible = true);
+    renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera); Object.values(walls).forEach((w, i) => w.g.visible = vis[i]); }
   renderer.render(scene, camera); labelR.render(scene, camera);
   requestAnimationFrame(frame);
 }
 frame();
 addEventListener('resize', () => { const w = app.clientWidth, h = app.clientHeight; renderer.setSize(w, h); labelR.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); });
-window.__lab = { scene, camera, controls, itemObjs, kids, goView, focusItem, walls, setCarYaw: (y) => car && (car.userData.yaw = y) };
+window.__lab = { scene, camera, controls, renderer, itemObjs, kids, goView, focusItem, walls, setCarYaw: (y) => car && (car.userData.yaw = y) };
+// ---------------- performance: merge each object's parts into one mesh per material ----------------
+// Thousands of tiny meshes (screws, gear teeth, panels) cost one draw call each. Every catalogue item, fixture and wall is
+// merged on its own, so clicking still finds the item (picking walks up to the object that carries userData.sno).
+const toFloat = (a) => { if (a.isInterleavedBufferAttribute || !(a.array instanceof Float32Array) || a.normalized) {
+  const n = a.count, k = a.itemSize, out = new Float32Array(n * k), get = ['getX', 'getY', 'getZ', 'getW'];
+  for (let i = 0; i < n; i++) for (let c = 0; c < k; c++) out[i * k + c] = a[get[c]](i);
+  return new THREE.BufferAttribute(out, k); } return a.clone(); };
+// identical-looking materials are made separately per part (M() builds a new one each call), so group by appearance
+const matKey = (m) => [m.type, m.color?.getHexString(), m.emissive?.getHexString(), m.emissiveIntensity, m.roughness, m.metalness, m.opacity, m.transparent, m.alphaTest, m.side, m.depthWrite,
+  m.map?.uuid, m.normalMap?.uuid, m.roughnessMap?.uuid, m.metalnessMap?.uuid, m.alphaMap?.uuid, m.emissiveMap?.uuid, m.aoMap?.uuid, m.envMapIntensity, m.vertexColors, m.flatShading, m.toneMapped, m.wireframe, m.clearcoat, m.transmission, m.sheen].join(',');
+function flatten(root) {
+  root.updateMatrixWorld(true);
+  const inv = root.matrixWorld.clone().invert(), detR = Math.sign(root.matrixWorld.determinant()), buckets = new Map();
+  const walk = (o) => { for (const c of o.children) {
+    if (c.userData.sno != null || c.userData.noMerge || !c.visible || c.isCSS2DObject) continue;   // nested items merge on their own
+    if (c.isMesh && !c.isSkinnedMesh && !c.isInstancedMesh && !c.userData.keep && !Array.isArray(c.material) && !c.morphTargetInfluences
+        && Math.sign(c.matrixWorld.determinant()) === detR) {
+      const g = c.geometry, key = [matKey(c.material), Object.keys(g.attributes).sort().join(), g.index ? 'i' : 'n', c.castShadow, c.receiveShadow, c.renderOrder, !!c.userData.wall].join('|');
+      (buckets.get(key) ?? buckets.set(key, []).get(key)).push(c);
+    }
+    walk(c); } };
+  walk(root); let saved = 0;
+  for (const list of buckets.values()) {
+    if (list.length < 2) continue;
+    const geos = list.map(m => { const g = new THREE.BufferGeometry(); for (const [k, at] of Object.entries(m.geometry.attributes)) g.setAttribute(k, toFloat(at));
+      if (m.geometry.index) g.setIndex(Array.from(m.geometry.index.array)); g.applyMatrix4(new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld)); return g; });
+    const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose()); if (!merged) continue;
+    const f = list[0], m = new THREE.Mesh(merged, f.material); m.castShadow = f.castShadow; m.receiveShadow = f.receiveShadow; m.renderOrder = f.renderOrder; m.userData.wall = !!f.userData.wall;
+    list.forEach(o => o.removeFromParent()); root.add(m); saved += list.length - 1;
+  }
+  return saved;
+}
+Promise.all(pending).then(() => new Promise(r => setTimeout(r, 400))).then(() => {
+  const t0 = performance.now(), roots = new Set();
+  Object.entries(itemObjs).forEach(([s, arr]) => { if (s !== 'zing') arr.forEach(o => { if (o !== car) roots.add(o); }); });
+  scene.children.forEach(o => { if (o !== ceiling && o !== kidRoot && !o.isLight && !roots.has(o)) roots.add(o); });
+  Object.values(walls).forEach(w => roots.add(w.g));
+  let saved = 0; roots.forEach(r => { saved += flatten(r); });
+  markShadows(); console.info(`lab: merged ${saved} meshes in ${(performance.now() - t0).toFixed(0)} ms`);
+  window.__lab.merged = saved;
+});
 // clean still for reference photos: no UI, pins or labels (they live in the DOM, not the canvas). Returns a JPEG data URL.
 window.__lab.shot = (pos, tgt, { w = 1920, h = 1080, fov = 50, people = false, time = null } = {}) => {
   if (time != null) { if (car) placeCar(time); ceiling.children.forEach(c => { if (c.userData.spin) c.rotation.y = time * 6; }); }   // deterministic for video frames
