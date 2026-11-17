@@ -106,7 +106,7 @@ wallAdd('B', MD.door(1.8, 2.3, true, 0.55), 0.9, 0, 0);
 [[-3.25], [-0.95], [1.35]].forEach(([s]) => wallAdd('R', MD.windowUnit(1.3, 1.2), s, 1.0, -0.06));
 wallAdd('F', MD.signage(), 4.2, 2.45, 0.01, 95); wallAdd('B', MD.signage(), 0.9, 2.5, 0.01);
 // sockets: 15A & 5A points on all walls
-for (const [side, list] of Object.entries({ F: [-1.0, 1.8, 3.0], B: [-3.72, -3.4, -2.1, -1.0, 2.0, 4.6], L: [-3.3, -2.5, -1.3, 1.3, 2.0, 2.7], R: [-4.3, -0.6, 2.3, 4.65] }))
+for (const [side, list] of Object.entries({ F: [-1.0, 1.8, 3.0], B: [-3.65, -2.75, -1.0, 2.0, 4.6], L: [-3.3, -2.5, -0.95, 1.3, 2.0, 2.7], R: [-4.3, -0.6, 2.3, 4.65] }))
   list.forEach((s, i) => wallAdd(side, MD.socket(), s, (side === 'B' && s < 0) || (side === 'L' && s > -3) || (side === 'R' && s === -0.6) ? 1.05 : 0.35, 0.006));
 
 const ceiling = new THREE.Group(); scene.add(ceiling);
@@ -158,8 +158,8 @@ wallAdd('F', MD.whiteboard(2.0, 1.1, (c, w, h) => { c.fillStyle = '#fbfbfb'; c.f
 wallAdd('F', MD.whiteboard(2.0, 1.1, (c, w, h) => { c.fillStyle = '#fbfbfb'; c.fillRect(0, 0, w, h); c.fillStyle = '#c62828'; c.font = `bold 40px ${FONT}`; c.fillText("Today in the Skill Lab", 40, 66); c.fillStyle = '#333'; c.font = `28px ${FONT}`; ['Robotics: geared buggy + arena run', 'Agriculture: NFT nutrient check (pH 6)', 'Food: chikki, measure & roll', 'Healthcare: CPR rhythm 100–120/min', 'BFSI: budget board game', 'IT: AI helper for robot code'].forEach((t, i) => c.fillText('✓ ' + t, 40, 130 + i * 50)); }), 2.45, 2.25, 0.01);
 for (let i = 0; i < 3; i++) item(87, -4.97 + i * 0.91, 0, -Z + 0.245);
 item(85, -1.6, 0, -3.8, Math.PI); item(86, -1.6, 0, -4.4);
-item(91, 0, 0, 0, 0, walls.L.g).position.set(-2.05, 2.35, 0.08); // router on left wall above IT
-wallAdd('F', MD.ITEM_MODELS[94](), 2.95, 1.45, 0.06, 94);
+item(91, 0, 0, 0, 0, walls.L.g).position.set(-2.05, 2.35, 0.105); // router on left wall above IT
+wallAdd('F', MD.ITEM_MODELS[94](), 2.95, 1.22, 0.06, 94);
 wallAdd('F', MD.ITEM_MODELS[92](), 3.25, 0.85, 0.004, 92); wallAdd('F', MD.ITEM_MODELS[93](), 3.45, 0.85, 0.004, 93);
 
 // ---------------- CENTRE: 5 worktables x 8 chairs = 40 seats ----------------
@@ -196,25 +196,25 @@ wallAdd('L', MD.ITEM_MODELS[88](), -1.85, 1.5, 0.0, 88);
 // robotics tool wall: real tools hanging on the pegboard's hooks (blender/toolwall.py -> models/toolwall.glb)
 { const tw = new THREE.Group(); at(tw, 1.85, 1.5, 0); walls.L.g.add(tw);
   new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).load('./models/toolwall.glb', g => { g.scene.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } }); tw.add(g.scene); }); }
-wallAdd('L', MD.poster(0.6, 0.8, 'Robotics, IoT & Automation', 'Microcontroller · sensors · motors · gears. CBSE 420 Electronics & Mechatronics.', '#2f9e5b', '⚙'), -2.35, 2.95, 0.01);
-wallAdd('L', MD.poster(0.6, 0.8, 'Build · Test · Improve', 'Every team of 4 shares one ThinkPro kit. Return every part to its tub.', '#ef7d37', '★'), -1.35, 2.95, 0.01);
+wallAdd('L', MD.poster(0.6, 0.8, 'Robotics, IoT & Automation', 'Microcontroller · sensors · motors · gears. CBSE 420 Electronics & Mechatronics.', '#2f9e5b', '⚙'), -2.35, 2.75, 0.01);
+wallAdd('L', MD.poster(0.6, 0.8, 'Build · Test · Improve', 'Every team of 4 shares one ThinkPro kit. Return every part to its tub.', '#ef7d37', '★'), -1.35, 2.75, 0.01);
 const almirah = onWall(MD.almirah(1.22, 2.05, 0.5), 'L', 0.1, 0.5); reg(56, almirah);
 floorZone(-X, -4.4, -3.4, 0.75, '#2f9e5b');
 
 // ---------------- IT / ITeS: AI computer wall ----------------
 onWall(MD.counter(2.1, 0.76, 0.6, '#cfd8dc', '#eceff1'), 'L', 2.05, 0.6);
-[1.4, 2.05, 2.7].forEach((z, i) => { const p = MD.pc(); p.userData.screen.material = new THREE.MeshBasicMaterial({ map: screenTex(i === 1 ? 'code' : 'ai'), toneMapped: false }); onWall(p, 'L', z, 0.25, 0.76); const cam = MD.ITEM_MODELS[57](); reg(57, at(cam, -X + 0.06, 1.33, z, Math.PI / 2)); scene.add(cam); const st = MD.stool('#c98a0b'); at(st, -X + 0.95, 0, z); scene.add(st); });
+[1.4, 2.05, 2.7].forEach((z, i) => { const p = MD.pc(); p.userData.screen.material = new THREE.MeshBasicMaterial({ map: screenTex(i === 1 ? 'code' : 'ai'), toneMapped: false }); onWall(p, 'L', z, 0.5, 0.76); const cam = MD.ITEM_MODELS[57](); reg(57, at(cam, -X + 0.06, 1.33, z, Math.PI / 2)); scene.add(cam); const st = MD.stool('#c98a0b'); at(st, -X + 0.95, 0, z); scene.add(st); });
 { const hs = []; for (let i = 0; i < 5; i++) hs.push(wallAdd('L', MD.ITEM_MODELS[58](), 1.15 + i * 0.22, 1.55, 0.05, 58)); }
-wallAdd('L', MD.poster(0.55, 0.75, 'Life Forms · Machines & Materials · Human Services', 'Every CSL covers all three Forms of Work.', '#2a6f97', '◎'), 1.7, 2.95, 0.01);
-wallAdd('L', MD.poster(0.55, 0.75, 'IT / ITeS · CBSE 402', 'Coding, AI fundamentals, ML, cybersecurity, app development.', '#c98a0b', '⌘'), 2.6, 2.95, 0.01);
+wallAdd('L', MD.poster(0.55, 0.75, 'Life Forms · Machines & Materials · Human Services', 'Every CSL covers all three Forms of Work.', '#2a6f97', '◎'), 1.7, 2.75, 0.01);
+wallAdd('L', MD.poster(0.55, 0.75, 'IT / ITeS · CBSE 402', 'Coding, AI fundamentals, ML, cybersecurity, app development.', '#c98a0b', '⌘'), 2.6, 2.75, 0.01);
 itemWall(87, 'L', 3.6, 0.48); itemWall(89, 'L', -3.85, 0.4);
 floorZone(-X, -4.5, 0.85, 3.2, '#c98a0b');
 
 // ---------------- FOOD PRODUCTION: wet & heat wall (back-left) ----------------
 floorZone(-X, -0.6, 3.6, Z, '#2e86ab');
-onWall(MD.fridge(), 'B', -4.905, 0.62);
+onWall(MD.fridge(), 'B', -4.825, 0.62);
 const CH = 0.86, cz = Z - 0.3;
-onWall(MD.counter(4.37, CH, 0.6), 'B', -2.435, 0.6);                     // x -4.62 .. -0.25
+onWall(MD.counter(4.29, CH, 0.6), 'B', -2.395, 0.6);                     // x -4.54 .. -0.25
 add(at(MD.sinkUnit(), -4.3, CH, cz, Math.PI));
 // back row: appliances (measured footprints, no overlaps)
 item(46, -3.55, CH, cz, Math.PI); item(46, -2.95, CH, cz, Math.PI);
@@ -222,7 +222,7 @@ item(41, -3.55, CH + 0.12, cz, Math.PI); item(27, -2.95, CH + 0.12, cz, Math.PI 
 item(36, -2.30, CH, cz, Math.PI); item(26, -1.75, CH, cz - 0.02, Math.PI); item(26, -1.15, CH, cz - 0.02, Math.PI);
 item(40, -0.62, CH, cz - 0.13, 0.3); item(31, -0.62, CH, cz + 0.15, Math.PI / 2); item(33, -0.36, CH, cz + 0.14, Math.PI);
 // front strip: small tools 3-8 cm from the counter edge
-item(35, -4.52, CH, cz - 0.255, 0); item(42, -4.30, CH, cz - 0.245, 0); item(24, -3.90, CH, cz - 0.15, Math.PI);
+wallAdd('B', MD.ITEM_MODELS[35](), -1.9, 1.475, 0.14, 35); item(42, -4.30, CH, cz - 0.245, 0); item(24, -3.90, CH, cz - 0.15, Math.PI);
 item(42, -3.45, CH, cz - 0.255, 0.05); item(28, -3.02, CH, cz - 0.255, 0.04); item(28, -2.72, CH, cz - 0.25, -0.04);
 item(30, -2.40, CH, cz - 0.215, 0.2); item(30, -2.25, CH, cz - 0.215, -0.15);
 [-1.86, -1.66, -1.26, -1.06].forEach((x, i) => item(52, x, CH, cz - 0.265, (i % 2 ? -0.06 : 0.06)));
@@ -233,23 +233,23 @@ for (const y of [1.45, 1.85]) wallAdd('B', B(3.6, 0.025, 0.28, M('#cdbfa8')), -2
   [-2.6, -2.4, -2.2].forEach(s => put(38, s, 1.475)); [-1.85, -1.63, -1.41].forEach(s => put(38, s, 1.875)); put(48, -1.25, 1.475); put(49, -1.0, 1.475);
   put(35, -1.62, 1.475); put(31, -1.15, 1.875, Math.PI / 2);
   put(53, -4.3, 1.875); put(53, -4.12, 1.875); put(34, -3.9, 1.875); put(34, -3.75, 1.875); put(50, -3.55, 1.875); put(47, -3.2, 1.875); put(41, -2.75, 1.875); put(48, -2.3, 1.875); put(49, -2.05, 1.875);
-  put(43, -3.25, 0.65); put(43, -2.0, 0.65); // ladle rails
-  [[51, -1.55], [51, -1.45], [54, -1.25], [54, -1.15], [55, -0.95], [44, -4.5], [44, -4.24], [45, -3.98], [45, -0.62]].forEach(([s, x]) => { const o = wallAdd('B', MD.ITEM_MODELS[s](), x, 1.25, 0.03, s); if (s === 44 || s === 45) o.rotation.set(Math.PI / 2, 0, Math.PI / 2, 'ZYX'); else o.rotation.z = -Math.PI / 2; });   // sieves hang flat, bowl to the room, handle up
+  wallAdd('B', MD.ITEM_MODELS[43](), -3.25, 0.875, 0.03, 43); wallAdd('B', MD.ITEM_MODELS[43](), -2.0, 0.875, 0.03, 43); // ladle rails flat on the wall, between counter and shelf
+  [[51, -1.55], [51, -1.45], [54, -1.25], [54, -1.15], [55, -0.95], [44, -4.40], [44, -4.15], [45, -3.90], [45, -0.62]].forEach(([s, x]) => { const o = wallAdd('B', MD.ITEM_MODELS[s](), x, 1.25, s === 44 || s === 45 ? 0.03 : 0.05, s); if (s === 44 || s === 45) o.rotation.set(Math.PI / 2, 0, Math.PI / 2, 'ZYX'); else o.rotation.z = -Math.PI / 2; });   // sieves hang flat, bowl to the room, handle up
 }
 item(37, -1.28, 0, 3.97); item(37, -0.94, 0, 3.97); item(39, -4.62, 0, 3.95); item(39, -0.18, 0, 3.97);
 item(25, -0.58, 0, 3.98, Math.PI); item(25, -0.58, 0.028, 3.97, Math.PI * 1.03);
 wallAdd('B', MD.poster(0.55, 0.7, 'Food Production · CBSE 409', 'Wash · weigh · measure · cook · clean. Gas off after every session.', '#2e86ab', '♨'), -0.95, 2.55, 0.01);
-itemWall(96, 'L', 4.45, 0.3);
+itemWall(96, 'L', 4.45, 0.38);
 
 // ---------------- SAFETY CORNER: entrance ----------------
 floorZone(1.9, 3.6, 4.0, Z, '#c62828');
 wallAdd('B', MD.ITEM_MODELS[92](), 2.15, 0.85, 0.004, 92); wallAdd('B', MD.ITEM_MODELS[93](), 2.45, 0.85, 0.004, 93);
-itemWall(96, 'B', 3.1, 0.3);
+itemWall(96, 'B', 3.1, 0.38);
 wallAdd('B', MD.ITEM_MODELS[94](), 3.1, 1.5, 0.06, 94);
 wallAdd('B', MD.signage('SAFETY CORNER', '#c62828', 0.9, 0.2), 2.75, 2.35, 0.01, 95);
 wallAdd('B', MD.poster(0.42, 0.56, "Lab Do's & Don'ts", 'Goggles on for tools. Aprons for cooking. Report every spill. Know both exits.', '#c62828', '!'), 2.2, 2.05, 0.01, 95);
 // PPE station: aprons x40, gloves x40, goggles x40
-wallAdd('B', MD.ITEM_MODELS[98](), 4.3, 0, 0.0, 98);
+wallAdd('B', MD.ITEM_MODELS[98](), 4.3, 0, 0.025, 98);
 item(97, 3.95, 0, Z - 0.2, Math.PI); item(99, 4.4, 0, Z - 0.2, Math.PI);
 wallAdd('B', MD.signage('PPE', '#1565c0', 0.3, 0.14), 4.3, 1.85, 0.01, 95);
 
@@ -258,7 +258,7 @@ floorZone(3.75, X, 2.45, Z, '#7465ad');
 const hShelf = onWall(MD.shelf(1.0, 1.8, 0.4, 5, '#d8d3e8'), 'R', 3.0, 0.4);
 { const L = hShelf.userData.levels, sx = X - 0.2, put = (sno, z, lvl, ry = -Math.PI / 2) => item(sno, sx, L[lvl] - 0.03 + 0.02, z, ry);
   put(60, 2.66, 0); put(70, 3.08, 0); put(77, 2.7, 1); put(61, 3.0, 1); put(61, 3.3, 1, 0); put(64, 2.75, 2); put(59, 3.05, 2); put(68, 3.3, 2);
-  put(75, 2.65, 3); put(67, 2.8, 3); put(76, 3.0, 3, 0); put(72, 3.25, 3, 0); put(74, 3.35, 4, 0); put(73, 2.7, 4, 0); put(69, 3.0, 4, 0); put(63, 3.15, 4, 0); }
+  put(75, 2.65, 3); put(67, 2.8, 3); put(76, 3.0, 3, 0); put(72, 3.25, 3, 0); put(74, 3.35, 4, 0); put(73, 2.7, 4, 0).position.y += 0.012; put(69, 3.0, 4, 0); put(63, 3.15, 4, 0); }
 onWall(MD.worktable(0.9, 0.5, 0.74), 'R', 3.95, 0.5);
 { const y = 0.74, x = X - 0.25; item(60, x - 0.02, y, 3.74, -Math.PI / 2); item(71, x - 0.15, y, 4.2, -Math.PI / 2); item(71, x - 0.15, y, 4.3, -Math.PI / 2); item(65, x + 0.07, y, 4.18, -Math.PI / 2); item(63, x - 0.17, y, 3.98, -Math.PI / 2 + 0.2); }
 wallAdd('B', MD.ITEM_MODELS[66](), 5.2, 0, 0.01, 66);
@@ -284,7 +284,7 @@ wallAdd('R', B(1.6, 0.04, 0.04, M('#5d4037')), 1.45, 0.9, 0.04);
 // long tools in a floor stand
 { const z0 = -4.62, x0 = X - 0.33; add(at(G(B(0.5, 0.04, 0.26, M('#5d4037')), at(B(0.5, 0.04, 0.26, M('#5d4037')), 0, 0.6, 0)), x0, 0, z0));
   [[6, -0.22, Math.PI / 2], [6, -0.15, Math.PI / 2], [16, 0.0, 0], [16, 0.22, 0]].forEach(([s, dx, ry]) => { const o = item(s, x0 + dx, 0.02, z0 + 0.02); o.rotation.set(-0.1, ry, 0); }); }
-item(13, X - 0.35, 0, 0.85); item(13, X - 0.35, 0, 1.35); item(12, X - 0.95, 0, -0.1); item(20, X - 0.8, 0, -1.75, 0.5); item(19, X - 0.95, 0, 0.35); item(19, X - 0.78, 0, 0.6, 0.8); item(8, X - 0.47, 0.76, -0.04, -1.9); item(3, X - 1.05, 0, -3.45, -Math.PI / 2);
+item(13, X - 0.35, 0, 0.85); item(13, X - 0.35, 0, 1.35); item(12, X - 0.95, 0, -0.1); item(20, X - 0.95, 0, -1.25, 0.5); item(19, X - 0.95, 0, 0.35); item(19, X - 0.78, 0, 0.6, 0.8); { const gl = wallAdd('R', MD.ITEM_MODELS[8](), 1.92, 0.73, 0.012, 8); gl.rotation.x = Math.PI / 2; }   // garden gloves hang on the tool rail item(3, X - 1.05, 0, -3.45, -Math.PI / 2);
 wallAdd('R', MD.poster(0.55, 0.72, 'Agriculture & Gardening · CBSE 408', 'Organic farming, hydroponics, drip irrigation. 40-plant NFT kit.', '#c4441c', '❀'), -1.95, 2.65, 0.01);
 wallAdd('F', MD.poster(0.5, 0.66, 'Composite Skill Lab', '6 vocations · 40 students · Classes VI–X · ThinkPro Academy', '#ef7d37', '◆'), 5.15, 2.3, 0.01);
 
@@ -375,7 +375,7 @@ loader.load('./kits.glb', (gltf) => {
   // kit spreads on the tables (2 kits per table)
   TABLES.forEach(t => t.kits?.forEach((k, i) => { const g = centre(take(n => n.startsWith(k + '_'))); shadowy(g); at(g, t.x, 0.741, t.z + (i ? 0.47 : -0.47), i * Math.PI); reg(56, g); scene.add(g); }));
   // build bench: T09 build + parts that fit the bench depth
-  { const g = centre(take(n => n.startsWith('T09_'))); g.children.slice().forEach(ch => { if (Math.abs(ch.position.z) > 0.24) g.remove(ch); }); shadowy(g); at(g, -X + 0.36, 0.761, -1.45, Math.PI / 2); reg(56, g); scene.add(g); }
+  { const g = centre(take(n => n.startsWith('T09_'))); g.children.slice().forEach(ch => { if (Math.abs(ch.position.z) > 0.24) g.remove(ch); }); shadowy(g); at(g, -X + 0.36, 0.761, -1.3, Math.PI / 2); reg(56, g); scene.add(g); }
   // ThinkBox tubs: 8 in the almirah, 2 on the bench = 10 kits
   const tubs = take(n => /^Box_\d_\d$/.test(n)); shadowy(tubs);
   const tb = new THREE.Box3().setFromObject(tubs), tc = tb.getCenter(new THREE.Vector3());
@@ -383,7 +383,8 @@ loader.load('./kits.glb', (gltf) => {
   tubs.children.forEach(ch => { ch.position.x -= tc.x; ch.position.z -= tc.z; ch.position.y += 0.06 - tb.min.y; });
   at(tubs, -X + 0.27, 0, 0.1); scene.add(tubs); reg(56, tubs);
   rows.forEach(ry => { const sh = B(0.46, 0.02, 1.17, almirah.userData.m); at(sh, -X + 0.25, ry - tb.min.y + 0.04, 0.1); scene.add(sh); });
-  [-2.55, -2.0].forEach(z => { const t = tubs.children[0].clone(); t.position.set(-X + 0.27, 0.76 + 0.004, z); t.rotation.copy(tubs.children[0].rotation); scene.add(t); reg(56, t); });
+  // one tub on the bench, the tenth kit stored on top of the almirah
+  [[-X + 0.27, 0.764, -2.56], [-X + 0.27, 2.05 + 0.004, 0.1]].forEach(([x, y, z]) => { const t = tubs.children[0].clone(); t.position.set(x, y, z); t.rotation.copy(tubs.children[0].rotation); scene.add(t); reg(56, t); });
   // Zing dancing in the arena
   const zing = src.getObjectByName('ZING_RIG');
   if (zing) { zing.position.set(0, 0.008, -0.05); arena.add(zing); shadowy(zing); reg('zing', zing);
@@ -392,7 +393,7 @@ loader.load('./kits.glb', (gltf) => {
   // Line Following Robot (Grade 3 Session 8 build, fully assembled) drives the arena track
   car = new THREE.Group(); arena.add(car); reg(56, car);
   loader.load('./models/lfr.glb', (g) => { shadowy(g.scene); car.add(g.scene); }, undefined, (e) => console.warn('lfr.glb failed', e));
-  const rest = centre(take(n => n.startsWith('T10_'))); rest.children.slice().forEach(ch => { if (Math.abs(ch.position.x) > 0.3 || Math.abs(ch.position.z) > 0.24) rest.remove(ch); }); shadowy(rest); at(rest, -X + 0.36, 0.761, -2.25, Math.PI / 2); scene.add(rest); reg(56, rest);
+  const rest = centre(take(n => n.startsWith('T10_'))); rest.children.slice().forEach(ch => { if (Math.abs(ch.position.x) > 0.3 || Math.abs(ch.position.z) > 0.24) rest.remove(ch); }); shadowy(rest); at(rest, -X + 0.36, 0.761, -1.98, Math.PI / 2); scene.add(rest); reg(56, rest);
   document.body.classList.add('loaded');
   buildItemList();
 }, undefined, (e) => { console.error(e); document.getElementById('loading').textContent = 'Could not load kits.glb'; });

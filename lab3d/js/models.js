@@ -266,7 +266,7 @@ export function pc() {
   const g = G(at(B(0.2, 0.012, 0.16, BLACK()), 0, 0, -0.05), at(B(0.04, 0.3, 0.03, BLACK()), 0, 0, -0.08), at(B(0.56, 0.34, 0.03, BLACK()), 0, 0.2, -0.06));
   g.userData.screen = at(new THREE.Mesh(new THREE.PlaneGeometry(0.53, 0.31), new THREE.MeshBasicMaterial({ color: '#fff' })), 0, 0.37, -0.044); g.add(g.userData.screen);
   g.add(at(B(0.44, 0.02, 0.14, M('#2b2f33')), 0, 0, 0.14)); g.add(at(B(0.06, 0.02, 0.1, M('#2b2f33')), 0.3, 0, 0.15));
-  g.add(at(B(0.18, 0.4, 0.38, M('#2b2f33', { r: 0.4 })), 0, -0.86 + 0.0, -0.05)); // tower under counter
+  g.add(at(B(0.18, 0.4, 0.38, M('#2b2f33', { r: 0.4 })), 0, -0.75, -0.05)); // tower on the floor under the counter
   return g;
 }
 export function stool(c = '#2a6f97') { const g = G(at(C(0.17, 0.17, 0.04, M(c)), 0, 0.5, 0)); [0, 1, 2, 3].forEach(i => { const a = i * Math.PI / 2 + Math.PI / 4; g.add(Rod([Math.cos(a) * 0.12, 0.5, Math.sin(a) * 0.12], [Math.cos(a) * 0.17, 0, Math.sin(a) * 0.17], 0.012, M('#3c4650', { m: 0.6 }))); }); return g; }
