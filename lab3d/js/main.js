@@ -106,7 +106,7 @@ wallAdd('B', MD.door(1.8, 2.3, true, 0.55), 0.9, 0, 0);
 [[-3.25], [-0.95], [1.35]].forEach(([s]) => wallAdd('R', MD.windowUnit(1.3, 1.2), s, 1.0, -0.06));
 wallAdd('F', MD.signage(), 4.2, 2.45, 0.01, 95); wallAdd('B', MD.signage(), 0.9, 2.5, 0.01);
 // sockets: 15A & 5A points on all walls
-for (const [side, list] of Object.entries({ F: [-1.0, 1.8, 3.0], B: [-4.0, -3.4, -2.1, -1.0, 2.0, 4.6], L: [-3.3, -2.5, -1.3, 1.3, 2.0, 2.7], R: [-4.3, -0.6, 2.3, 4.65] }))
+for (const [side, list] of Object.entries({ F: [-1.0, 1.8, 3.0], B: [-3.72, -3.4, -2.1, -1.0, 2.0, 4.6], L: [-3.3, -2.5, -1.3, 1.3, 2.0, 2.7], R: [-4.3, -0.6, 2.3, 4.65] }))
   list.forEach((s, i) => wallAdd(side, MD.socket(), s, (side === 'B' && s < 0) || (side === 'L' && s > -3) || (side === 'R' && s === -0.6) ? 1.05 : 0.35, 0.006));
 
 const ceiling = new THREE.Group(); scene.add(ceiling);
@@ -234,7 +234,7 @@ for (const y of [1.45, 1.85]) wallAdd('B', B(3.6, 0.025, 0.28, M('#cdbfa8')), -2
   put(35, -1.62, 1.475); put(31, -1.15, 1.875, Math.PI / 2);
   put(53, -4.3, 1.875); put(53, -4.12, 1.875); put(34, -3.9, 1.875); put(34, -3.75, 1.875); put(50, -3.55, 1.875); put(47, -3.2, 1.875); put(41, -2.75, 1.875); put(48, -2.3, 1.875); put(49, -2.05, 1.875);
   put(43, -3.25, 0.65); put(43, -2.0, 0.65); // ladle rails
-  [[51, -1.55], [51, -1.45], [54, -1.25], [54, -1.15], [55, -0.95], [44, -4.48], [44, -4.28], [45, -4.08], [45, -0.8]].forEach(([s, x]) => { const o = wallAdd('B', MD.ITEM_MODELS[s](), x, 1.25, 0.03, s); o.rotation.z = s === 44 || s === 45 ? Math.PI / 2 : -Math.PI / 2; });
+  [[51, -1.55], [51, -1.45], [54, -1.25], [54, -1.15], [55, -0.95], [44, -4.5], [44, -4.24], [45, -3.98], [45, -0.62]].forEach(([s, x]) => { const o = wallAdd('B', MD.ITEM_MODELS[s](), x, 1.25, 0.03, s); if (s === 44 || s === 45) o.rotation.set(Math.PI / 2, 0, Math.PI / 2, 'ZYX'); else o.rotation.z = -Math.PI / 2; });   // sieves hang flat, bowl to the room, handle up
 }
 item(37, -1.28, 0, 3.97); item(37, -0.94, 0, 3.97); item(39, -4.62, 0, 3.95); item(39, -0.18, 0, 3.97);
 item(25, -0.58, 0, 3.98, Math.PI); item(25, -0.58, 0.028, 3.97, Math.PI * 1.03);
