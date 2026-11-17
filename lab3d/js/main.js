@@ -290,9 +290,10 @@ wallAdd('F', MD.poster(0.5, 0.66, 'Composite Skill Lab', '6 vocations · 40 stud
 
 // ---------------- labels (zone pins) ----------------
 const VIEWS = [
+  { id: 'inside', label: 'Look around', zone: null, pos: [0, 1.85, 3.1], tgt: [0, 1.15, 0] },
   { id: 'overview', label: 'Whole lab', zone: null, pos: [9.5, 10.5, 10], tgt: [0, 0.4, 0] },
   { id: 'robotics', label: 'Robotics build floor', zone: 'electronics', pos: [-0.2, 3.1, 2.6], tgt: [-1.2, 0.6, -1.8], pin: [-3, 1.5, -1.81] },
-  { id: 'arena', label: 'Robot arena + Zing', zone: 'electronics', pos: [-1.7, 1.45, -0.3], tgt: [0.1, 0.3, -1.9], pin: [0, 1.35, -1.81] },
+  { id: 'arena', label: 'Robot arena', zone: 'electronics', pos: [-1.7, 1.45, -0.3], tgt: [0.1, 0.3, -1.9], pin: [0, 1.35, -1.81] },
   { id: 'bench', label: 'Build bench + ThinkBox kits', zone: 'electronics', pos: [-2.6, 1.9, -0.6], tgt: [-5.2, 1.0, -1.0], pin: [-5.0, 2.3, -0.9] },
   { id: 'teach', label: 'Teaching wall', zone: 'general', pos: [0.6, 1.9, -0.4], tgt: [0, 1.4, -4.8], pin: [-1.6, 2.0, -4.1] },
   { id: 'it', label: 'AI computer wall', zone: 'it', pos: [-3.2, 1.7, 2.3], tgt: [-5.4, 1.0, 2.0], pin: [-5.0, 2.1, 2.05] },
@@ -385,10 +386,10 @@ loader.load('./kits.glb', (gltf) => {
   rows.forEach(ry => { const sh = B(0.46, 0.02, 1.17, almirah.userData.m); at(sh, -X + 0.25, ry - tb.min.y + 0.04, 0.1); scene.add(sh); });
   // one tub on the bench, the tenth kit stored on top of the almirah
   [[-X + 0.27, 0.764, -2.56], [-X + 0.27, 2.05 + 0.004, 0.1]].forEach(([x, y, z]) => { const t = tubs.children[0].clone(); t.position.set(x, y, z); t.rotation.copy(tubs.children[0].rotation); scene.add(t); reg(56, t); });
-  // Zing dancing in the arena
+  // Zing standing still on the first robotics worktable, between the two kits (no dance)
   const zing = src.getObjectByName('ZING_RIG');
-  if (zing) { zing.position.set(0, 0.008, -0.05); arena.add(zing); shadowy(zing); reg('zing', zing);
-    const mx = new THREE.AnimationMixer(zing); gltf.animations.forEach(a => mx.clipAction(a).play()); mixers.push(mx); }
+  if (zing) { const t0 = TABLES[0]; zing.position.set(t0.x, 0.741, t0.z); zing.rotation.set(0, 0, 0); scene.add(zing); shadowy(zing); reg('zing', zing);
+    const mx = new THREE.AnimationMixer(zing); gltf.animations.forEach(a => { const ac = mx.clipAction(a); ac.play(); ac.paused = true; ac.time = 0; }); mx.update(0); }
   // T10 geared buggy drives the line track
   // Line Following Robot (Grade 3 Session 8 build, fully assembled) drives the arena track
   car = new THREE.Group(); arena.add(car); reg(56, car);
@@ -482,7 +483,7 @@ function select(o) {
   hl.box.setFromObject(o); hl.visible = true;
   if (o.userData.kidObj) { showCard({ title: 'Student activity', body: o.userData.activity, zone: null }); return; }
   const s = o.userData.sno;
-  if (s === 'zing') return showCard({ title: 'Zing humanoid robot', body: 'ThinkPro’s 17-joint humanoid (68 cm), dancing on the arena: the demo that hooks every batch.', zone: 'electronics' });
+  if (s === 'zing') return showCard({ title: 'Zing humanoid robot', body: 'ThinkPro’s 17-joint humanoid (68 cm), standing on the robotics worktable: the demo that hooks every batch.', zone: 'electronics' });
   const it = ITEM[s]; showCard({ title: it.item, body: it.spec + (it.note ? ` · ${it.note}` : ''), qty: it.qty, zone: it.zone, img: it.img, sno: s, src: it.src });
 }
 function showCard({ title, body, qty, zone, img, sno, src }) {
@@ -510,21 +511,26 @@ function buildItemList() {
 }
 
 // UI wiring
-document.querySelector('.views').innerHTML = VIEWS.map((v, i) => `<button data-id="${v.id}" style="--c:${v.zone ? ZONES[v.zone].color : '#1b242d'}">${i ? `<b>${i}</b>` : ''}${v.label}</button>`).join('');
+{ let n = 0; document.querySelector('.views').innerHTML = VIEWS.map(v => `<button data-id="${v.id}" style="--c:${v.zone ? ZONES[v.zone].color : '#1b242d'}">${v.pin ? `<b>${++n}</b>` : ''}${v.label}</button>`).join(''); }
 document.querySelector('.views').onclick = e => { const b = e.target.closest('button'); if (b) goView(b.dataset.id); };
 document.getElementById('walk').onclick = () => setMode('walk');
 document.getElementById('kidsT').onchange = e => { kidRoot.visible = e.target.checked; };
 document.getElementById('pinsT').onchange = e => { pins.forEach(p => p.visible = e.target.checked); };
+// students and zone pins start hidden for now (toggle them back on in the toolbar)
+kidRoot.visible = document.getElementById('kidsT').checked; pins.forEach(p => p.visible = document.getElementById('pinsT').checked);
 document.getElementById('listB').onclick = () => document.body.classList.toggle('list-open');
-document.getElementById('dance').onchange = e => { mixers.forEach(m => m.timeScale = e.target.checked ? 1 : 0); };
 
 // start view
 camera.position.set(9.5, 10.5, 10); controls.target.set(0, 0.4, 0); controls.update();
-setTimeout(() => goView('robotics'), 900);
+setTimeout(() => goView('inside'), 900);   // open inside the room, orbiting the room centre: drag to look around every wall
 
 // ---------------- loop ----------------
 const clock = new THREE.Clock(); let slideT = 0;
 const vTmp = new THREE.Vector3();
+// line-follower position on the arena track at time t (seconds)
+function placeCar(t) { const u = (t * 0.09) % 1, a = (AW - 0.44) / 2, b = (AD - 0.44) / 2; const ang = u * Math.PI * 2; const sx = Math.sign(Math.cos(ang)) * Math.pow(Math.abs(Math.cos(ang)), 0.35) * a, sz = Math.sign(Math.sin(ang)) * Math.pow(Math.abs(Math.sin(ang)), 0.35) * b;
+  const n = (ang + 0.02), nx = Math.sign(Math.cos(n)) * Math.pow(Math.abs(Math.cos(n)), 0.35) * a, nz = Math.sign(Math.sin(n)) * Math.pow(Math.abs(Math.sin(n)), 0.35) * b;
+  car.position.set(sx, 0.006, sz); car.rotation.y = Math.atan2(nx - sx, nz - sz) + (car.userData.yaw ?? 0); }
 function frame() {
   const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
   if (tween) { tween.t += dt / tween.dur; const k = tween.t >= 1 ? 1 : 1 - Math.pow(1 - tween.t, 3); camera.position.lerpVectors(tween.p0, tween.p1, k); controls.target.lerpVectors(tween.t0, tween.t1, k); if (tween.t >= 1) tween = null; }
@@ -540,9 +546,7 @@ function frame() {
   ceiling.children.forEach(c => { if (c.userData.spin) c.rotation.y += dt * 6; });
   mixers.forEach(m => m.update(dt));
   kids.forEach(k => k.update(t));
-  if (car && !window.__pauseCar) { const u = (t * 0.09) % 1, a = (AW - 0.44) / 2, b = (AD - 0.44) / 2; const ang = u * Math.PI * 2; const sx = Math.sign(Math.cos(ang)) * Math.pow(Math.abs(Math.cos(ang)), 0.35) * a, sz = Math.sign(Math.sin(ang)) * Math.pow(Math.abs(Math.sin(ang)), 0.35) * b;
-    const n = (ang + 0.02), nx = Math.sign(Math.cos(n)) * Math.pow(Math.abs(Math.cos(n)), 0.35) * a, nz = Math.sign(Math.sin(n)) * Math.pow(Math.abs(Math.sin(n)), 0.35) * b;
-    car.position.set(sx, 0.006, sz); car.rotation.y = Math.atan2(nx - sx, nz - sz) + (car.userData.yaw ?? 0); }
+  if (car && !window.__pauseCar) placeCar(t);
   if ((slideT += dt) > 0.1) { slideT = 0; drawDisplay(SLIDE); }
   renderer.render(scene, camera); labelR.render(scene, camera);
   requestAnimationFrame(frame);
@@ -550,3 +554,18 @@ function frame() {
 frame();
 addEventListener('resize', () => { const w = app.clientWidth, h = app.clientHeight; renderer.setSize(w, h); labelR.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); });
 window.__lab = { scene, camera, controls, itemObjs, kids, goView, focusItem, walls, setCarYaw: (y) => car && (car.userData.yaw = y) };
+// clean still for reference photos: no UI, pins or labels (they live in the DOM, not the canvas). Returns a JPEG data URL.
+window.__lab.shot = (pos, tgt, { w = 1920, h = 1080, fov = 50, people = false, time = null } = {}) => {
+  if (time != null) { if (car) placeCar(time); ceiling.children.forEach(c => { if (c.userData.spin) c.rotation.y = time * 6; }); }   // deterministic for video frames
+  const prev = { size: renderer.getSize(new THREE.Vector2()), pr: renderer.getPixelRatio(), fov: camera.fov, aspect: camera.aspect, p: camera.position.clone(), q: camera.quaternion.clone() };
+  kids.forEach(k => k.root.visible = people);
+  renderer.setPixelRatio(1); renderer.setSize(w, h, false);
+  camera.fov = fov; camera.aspect = w / h; camera.position.set(...pos); camera.lookAt(...tgt); camera.updateProjectionMatrix();
+  const inside = Math.abs(camera.position.x) < X && Math.abs(camera.position.z) < Z && camera.position.y < H;
+  for (const wl of Object.values(walls)) wl.g.visible = inside || vTmp.copy(camera.position).sub(wl.p).dot(wl.n) > -0.05;
+  ceiling.visible = camera.position.y < H - 0.05;
+  renderer.render(scene, camera); const url = renderer.domElement.toDataURL('image/jpeg', 0.92);
+  renderer.setPixelRatio(prev.pr); renderer.setSize(prev.size.x, prev.size.y, false); camera.fov = prev.fov; camera.aspect = prev.aspect; camera.position.copy(prev.p); camera.quaternion.copy(prev.q); camera.updateProjectionMatrix();
+  kids.forEach(k => k.root.visible = true);
+  return url;
+};

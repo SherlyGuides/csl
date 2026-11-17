@@ -1,3 +1,9 @@
 models/preview/
 blender/__pycache__/
 .DS_Store
+renders/frames/
+renders/frames-preview/
+renders/walkthrough-preview.mp4
+renders/
+video-kit*/
+csl-video-kit.zip
